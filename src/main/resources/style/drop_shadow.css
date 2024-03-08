@@ -1,0 +1,5 @@
+.btnRoot {
+    -fx-text-fill: grey;
+    -fx-effect: dropshadow(three-pass-box,  #b2ebf2, 10, 0.3, 0, 5);
+}
+
