@@ -3,6 +3,7 @@ package lk.ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
@@ -55,5 +56,17 @@ public class UserLoginFormController {
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.setTitle("Register");
+    }
+
+    @FXML
+    void btnLoginOnAction(ActionEvent event) throws IOException {
+        rootNode.getScene().getWindow().hide();
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_form.fxml"));
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
     }
 }
