@@ -12,101 +12,91 @@
 <?import javafx.scene.shape.CubicCurve?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="565.0" prefWidth="675.0" style="-fx-background-color: #192a56;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserLoginFormController">
+<AnchorPane prefHeight="566.0" prefWidth="710.0" style="-fx-background-color: #192a56;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserLoginFormController">
    <children>
-      <CubicCurve controlX1="-6.0" controlX2="-299.0" controlY1="286.449951171875" controlY2="-388.54815673828125" endX="434.0" endY="-292.0" fill="#273c738c" layoutX="240.0" layoutY="292.0" startX="434.0" startY="270.0" stroke="#f5bf9300" strokeWidth="3.0" />
-      <TextField alignment="CENTER" layoutX="357.0" layoutY="134.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
+      <CubicCurve controlX1="-6.0" controlX2="-299.0" controlY1="286.449951171875" controlY2="-388.54815673828125" endX="475.0584716796875" endY="-292.0" fill="#273c738c" layoutX="240.0" layoutY="292.0" startX="477.9296875" startY="276.5452880859375" stroke="#f5bf9300" strokeWidth="3.0" />
+      <TextField alignment="CENTER" layoutX="407.0" layoutY="144.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtPasswordTextField" alignment="CENTER" layoutX="360.0" layoutY="234.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
+      <TextField fx:id="txtPasswordTextField" alignment="CENTER" layoutX="410.0" layoutY="244.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </TextField>
-      <Label layoutX="367.0" layoutY="107.0" text="Enter Your User Name" textFill="WHITE">
+      <Label layoutX="417.0" layoutY="117.0" text="Enter Your User Name" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="367.0" layoutY="207.0" text="Enter Your Password" textFill="WHITE">
+      <Label layoutX="417.0" layoutY="217.0" text="Enter Your Password" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="45.0" fitWidth="37.0" layoutX="367.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="37.0" layoutX="417.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/icons8-user (1).gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="37.0" layoutX="367.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="37.0" layoutX="417.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/icons8-check-lock.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="67.0" fitWidth="72.0" layoutX="22.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="67.0" fitWidth="72.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/library.png" />
          </image>
       </ImageView>
-      <Label layoutX="45.0" layoutY="168.0" text="Welcome" textFill="WHITE">
+      <Label layoutX="100.0" layoutY="39.0" text="Book Worm" textFill="#f8c291">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="499.0" layoutY="58.0" text="Login" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="205.0" text="to" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="33.0" layoutY="238.0" text="Book Worm" textFill="#f8c291">
-         <font>
-            <Font name="System Bold Italic" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="439.0" layoutY="42.0" text="Login" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="24.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="272.0" fitWidth="419.0" layoutX="-57.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="365.0" fitWidth="371.0" layoutX="-9.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/books-removebg-preview.png" />
+            <Image url="@../icons/Reading%20book-pana.png" />
          </image>
       </ImageView>
-      <Label layoutX="340.0" layoutY="292.0" text="Forgot Password ?" textFill="WHITE">
+      <Label layoutX="394.0" layoutY="302.0" text="Forgot Password ?" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="478.0" layoutY="325.0" text="or" textFill="WHITE">
+      <Label layoutX="532.0" layoutY="339.0" text="or" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="394.0" layoutY="361.0" text="New User ?" textFill="WHITE">
+      <Label layoutX="444.0" layoutY="371.0" text="New User ?" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="483.0" layoutY="358.0" text="Sign Up Here !" textFill="#f8c291">
+      <Hyperlink layoutX="543.0" layoutY="368.0" text="Sign Up Here !" textFill="#f8c291">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Hyperlink>
-      <JFXButton buttonType="RAISED" layoutX="446.0" layoutY="413.0" prefHeight="37.0" prefWidth="82.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" text="Login" textFill="#273c73">
+      <JFXButton buttonType="RAISED" layoutX="496.0" layoutY="413.0" prefHeight="37.0" prefWidth="82.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" text="Login" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </JFXButton>
-      <PasswordField fx:id="txtPasswordField" alignment="CENTER" layoutX="359.0" layoutY="234.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" />
-      <ImageView fx:id="imgLock" fitHeight="37.0" fitWidth="37.0" layoutX="368.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+      <PasswordField fx:id="txtPasswordField" alignment="CENTER" layoutX="409.0" layoutY="244.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" />
+      <ImageView fx:id="imgLock" fitHeight="37.0" fitWidth="37.0" layoutX="418.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/icons8-check-lock.gif" />
          </image>
       </ImageView>
-      <CheckBox fx:id="checkBox" layoutX="498.0" layoutY="290.0" mnemonicParsing="false" onAction="#changeVisibilityOnAction" text="Show Password" textFill="WHITE">
+      <CheckBox fx:id="checkBox" layoutX="558.0" layoutY="300.0" mnemonicParsing="false" onAction="#changeVisibilityOnAction" text="Show Password" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
