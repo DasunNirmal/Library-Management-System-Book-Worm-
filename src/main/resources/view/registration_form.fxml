@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="566.0" prefWidth="710.0" style="-fx-background-color: #192a56;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.RegistrationFormController">
    <children>
-      <CubicCurve controlX1="-101.49302673339844" controlX2="471.5069580078125" controlY1="27.0" controlY2="-90.0" endX="482.95361328125" endY="278.7740478515625" fill="#273c738c" layoutX="250.0" layoutY="292.0" startX="-250.0" startY="278.7740478515625" stroke="#f5bf9300" strokeWidth="3.0" />
+      <CubicCurve controlX1="-101.49302673339844" controlX2="471.5069580078125" controlY1="27.0" controlY2="-90.0" endX="485.4459228515625" endY="278.7740478515625" fill="#273c738c" layoutX="250.0" layoutY="292.0" startX="-250.0" startY="278.7740478515625" stroke="#f5bf9300" strokeWidth="3.0" />
       <Label layoutX="360.0" layoutY="78.0" text="Registration" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
