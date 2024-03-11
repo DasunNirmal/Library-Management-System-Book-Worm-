@@ -1,2 +1,4 @@
-package lk.ijse.controller;public class MainFormController {
+package lk.ijse.controller;
+
+public class MainFormController {
 }
