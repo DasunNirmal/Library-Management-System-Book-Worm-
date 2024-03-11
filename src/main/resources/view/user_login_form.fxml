@@ -85,7 +85,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Hyperlink>
-      <JFXButton buttonType="RAISED" layoutX="496.0" layoutY="413.0" prefHeight="37.0" prefWidth="82.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" text="Login" textFill="#273c73">
+      <JFXButton buttonType="RAISED" layoutX="496.0" layoutY="413.0" onAction="#btnLoginOnAction" prefHeight="37.0" prefWidth="82.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" text="Login" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
