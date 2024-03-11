@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.CubicCurve?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="566.0" prefWidth="710.0" style="-fx-background-color: #192a56;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserLoginFormController">
+<AnchorPane fx:id="rootNode" prefHeight="566.0" prefWidth="710.0" style="-fx-background-color: #192a56;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserLoginFormController">
    <children>
       <CubicCurve controlX1="-6.0" controlX2="-299.0" controlY1="286.449951171875" controlY2="-388.54815673828125" endX="475.0584716796875" endY="-292.0" fill="#273c738c" layoutX="240.0" layoutY="292.0" startX="477.9296875" startY="276.5452880859375" stroke="#f5bf9300" strokeWidth="3.0" />
       <TextField alignment="CENTER" layoutX="407.0" layoutY="144.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
@@ -80,7 +80,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="543.0" layoutY="368.0" text="Sign Up Here !" textFill="#f8c291">
+      <Hyperlink layoutX="543.0" layoutY="368.0" onAction="#hypRegistrationOnAction" text="Sign Up Here !" textFill="#f8c291">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
