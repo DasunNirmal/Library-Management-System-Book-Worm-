@@ -76,7 +76,10 @@ public class MainFormController {
     }
 
     @FXML
-    void btnTransactionsOnAction(ActionEvent event) {
+    void btnTransactionsOnAction(ActionEvent event) throws IOException {
         selectCss(btnTransactions);
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/transaction_form.fxml"));
+        this.mainNode.getChildren().clear();
+        this.mainNode.getChildren().add(anchorPane);
     }
 }
