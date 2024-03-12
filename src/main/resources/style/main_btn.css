@@ -9,6 +9,6 @@
 }
 .button:hover {
     -fx-background-color: rgb(80, 104, 161);
-    -fx-font-weight: bold; /* Change the font weight to bold */
-    -fx-text-fill: white; /* Change the text color to white */
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }

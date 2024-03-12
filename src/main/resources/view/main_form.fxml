@@ -85,5 +85,6 @@
             <Image url="@../icons/icons8-add-users.png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="mainNode" layoutX="225.0" layoutY="8.0" prefHeight="714.0" prefWidth="919.0" />
    </children>
 </AnchorPane>

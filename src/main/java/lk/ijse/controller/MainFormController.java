@@ -3,6 +3,10 @@ package lk.ijse.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class MainFormController {
 
@@ -21,8 +25,14 @@ public class MainFormController {
     @FXML
     private JFXButton btnTransactions;
 
-    public void initialize() {
+    @FXML
+    private AnchorPane mainNode;
+
+    public void initialize() throws IOException {
         selectCss(btnDashboard);
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/dashboard_form.fxml"));
+        this.mainNode.getChildren().clear();
+        this.mainNode.getChildren().add(anchorPane);
     }
 
     private void selectCss(JFXButton mainFormBtn){
@@ -58,8 +68,11 @@ public class MainFormController {
     }
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
         selectCss(btnDashboard);
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/dashboard_form.fxml"));
+        this.mainNode.getChildren().clear();
+        this.mainNode.getChildren().add(anchorPane);
     }
 
     @FXML
