@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="714.0" prefWidth="919.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchesFormController">
+   <children>
+      <Label layoutX="34.0" layoutY="6.0" text="Branches" textFill="#273c73">
+         <font>
+            <Font name="Dyuthi Regular" size="32.0" />
+         </font>
+      </Label>
+      <Line endX="586.0" layoutX="333.0" layoutY="60.0" startX="-333.0" stroke="#fad390" strokeWidth="2.0" />
+      <Label layoutX="54.0" layoutY="93.0" text="Branch ID :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="44.0" layoutY="119.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="364.0" layoutY="93.0" text="Branch Name :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="354.0" layoutY="119.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="364.0" layoutY="211.0" text="Address :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="354.0" layoutY="237.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="54.0" layoutY="211.0" text="Branch Manager :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="44.0" layoutY="237.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TableView layoutX="45.0" layoutY="368.0" prefHeight="333.0" prefWidth="795.0">
+        <columns>
+          <TableColumn prefWidth="135.0" text="Branch ID" />
+          <TableColumn prefWidth="154.0" text="Branch Name" />
+            <TableColumn prefWidth="176.0" text="Branch Manager" />
+            <TableColumn prefWidth="185.0" text="Adderss" />
+            <TableColumn prefWidth="144.0" text="Branch Staff" />
+        </columns>
+      </TableView>
+      <Label layoutX="644.0" layoutY="93.0" text="Branch Staff :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="634.0" layoutY="119.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <AnchorPane layoutX="583.0" layoutY="182.0" prefHeight="124.0" prefWidth="267.0" style="-fx-background-color: #809CC557; -fx-background-radius: 20;" />
+      <Label layoutX="657.0" layoutY="199.0" text="Total Branches" textFill="#273c73">
+         <font>
+            <Font name="Dyuthi Regular" size="22.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="197.0" layoutY="324.0" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="56.0" layoutY="329.0" text="Search Branches :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="54.0" fitWidth="27.0" layoutX="208.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/icons8-search-100.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

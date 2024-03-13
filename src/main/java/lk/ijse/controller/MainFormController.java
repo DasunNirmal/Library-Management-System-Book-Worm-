@@ -61,8 +61,11 @@ public class MainFormController {
     }
 
     @FXML
-    void btnBranchesOnAction(ActionEvent event) {
+    void btnBranchesOnAction(ActionEvent event) throws IOException {
         selectCss(btnBranches);
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/branches_form.fxml"));
+        this.mainNode.getChildren().clear();
+        this.mainNode.getChildren().add(anchorPane);
     }
 
     @FXML
