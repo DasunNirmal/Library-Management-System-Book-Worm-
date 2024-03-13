@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -89,6 +90,9 @@
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <PasswordField fx:id="txtPasswordField" alignment="CENTER" layoutX="409.0" layoutY="244.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" />
       <ImageView fx:id="imgLock" fitHeight="37.0" fitWidth="37.0" layoutX="418.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">

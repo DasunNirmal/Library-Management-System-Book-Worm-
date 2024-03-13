@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="714.0" prefWidth="919.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchesFormController">
    <children>
@@ -99,5 +100,29 @@
             <Image url="@../icons/icons8-search-100.png" />
          </image>
       </ImageView>
+      <JFXButton layoutX="566.0" layoutY="328.0" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="651.0" layoutY="328.0" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="745.0" layoutY="328.0" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

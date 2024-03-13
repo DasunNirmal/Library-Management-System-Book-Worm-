@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="714.0" prefWidth="919.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.TransactionFormController">
    <children>
@@ -14,5 +21,149 @@
          </font>
       </Label>
       <Line endX="586.0" layoutX="333.0" layoutY="60.0" startX="-333.0" stroke="#fad390" strokeWidth="2.0" />
+      <Label layoutX="39.0" layoutY="151.0" text="Borrowing ID :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="101.0" text="Search Book  :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="167.0" layoutY="97.0" prefHeight="24.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="170.0" layoutY="151.0" prefHeight="19.0" prefWidth="87.0" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="191.0" text="Book Name    :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="170.0" layoutY="191.0" prefHeight="19.0" prefWidth="160.0" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="236.0" text="Genre             :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="173.0" layoutY="236.0" prefHeight="19.0" prefWidth="160.0" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="448.0" layoutY="101.0" text="Search Members :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="612.0" layoutY="97.0" prefHeight="24.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="449.0" layoutY="191.0" text="Name          :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="567.0" layoutY="192.0" prefHeight="19.0" prefWidth="144.0" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="448.0" layoutY="151.0" text="Member ID  :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="566.0" layoutY="151.0" prefHeight="19.0" prefWidth="117.0" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="449.0" layoutY="230.0" text="Borrowing Date :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="602.0" layoutY="230.0" prefHeight="19.0" prefWidth="117.0" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <DatePicker layoutX="604.0" layoutY="270.0" />
+      <Label layoutX="450.0" layoutY="272.0" text="Returning Date :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView layoutX="34.0" layoutY="395.0" prefHeight="301.0" prefWidth="856.0">
+        <columns>
+          <TableColumn prefWidth="102.0" text="Borrowing ID" />
+          <TableColumn prefWidth="110.0" text="Member" />
+            <TableColumn prefWidth="103.0" text="Member ID" />
+            <TableColumn prefWidth="194.0" text="Book" />
+            <TableColumn prefWidth="109.0" text="Genre" />
+            <TableColumn prefWidth="119.0" text="Borrowed Date" />
+            <TableColumn prefWidth="118.0" text="Return Date" />
+        </columns>
+      </TableView>
+      <TextField alignment="CENTER" layoutX="207.0" layoutY="344.0" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="37.0" layoutY="349.0" text="Search Transactions :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="54.0" fitWidth="27.0" layoutX="218.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/icons8-search-100.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="516.0" layoutY="348.0" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="601.0" layoutY="348.0" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="695.0" layoutY="348.0" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="791.0" layoutY="348.0" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Return" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>
