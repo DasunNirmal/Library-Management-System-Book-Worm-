@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="714.0" prefWidth="919.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MembersFormController">
+   <children>
+      <Label layoutX="34.0" layoutY="6.0" text="Members" textFill="#273c73">
+         <font>
+            <Font name="Dyuthi Regular" size="32.0" />
+         </font>
+      </Label>
+      <Line endX="586.0" layoutX="333.0" layoutY="60.0" startX="-333.0" stroke="#fad390" strokeWidth="2.0" />
+      <Label layoutX="51.0" layoutY="103.0" text="Member ID :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="41.0" layoutY="129.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="291.0" layoutY="103.0" text="Name :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="281.0" layoutY="129.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="531.0" layoutY="103.0" text="Phone Number :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="521.0" layoutY="129.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="51.0" layoutY="223.0" text="Email :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="41.0" layoutY="249.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="291.0" layoutY="223.0" text="Address :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="281.0" layoutY="249.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TableView layoutX="41.0" layoutY="384.0" prefHeight="319.0" prefWidth="822.0">
+        <columns>
+          <TableColumn prefWidth="106.0" text="Member ID" />
+          <TableColumn prefWidth="176.0" text="Name" />
+            <TableColumn prefWidth="175.0" text="Email" />
+            <TableColumn prefWidth="206.0" text="Address" />
+            <TableColumn prefWidth="157.0" text="Phone Number" />
+        </columns>
+      </TableView>
+      <TextField alignment="CENTER" layoutX="188.0" layoutY="344.0" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="47.0" layoutY="349.0" text="Search Members :" textFill="#273c73">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="54.0" fitWidth="27.0" layoutX="199.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/icons8-search-100.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="583.0" layoutY="192.0" prefHeight="124.0" prefWidth="267.0" style="-fx-background-color: #809CC557; -fx-background-radius: 20;" />
+      <Label layoutX="657.0" layoutY="209.0" text="Total Members" textFill="#273c73">
+         <font>
+            <Font name="Dyuthi Regular" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

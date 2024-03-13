@@ -69,8 +69,11 @@ public class MainFormController {
     }
 
     @FXML
-    void btnMembersOnAction(ActionEvent event) {
+    void btnMembersOnAction(ActionEvent event) throws IOException {
         selectCss(btnMembers);
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/members_form.fxml"));
+        this.mainNode.getChildren().clear();
+        this.mainNode.getChildren().add(anchorPane);
     }
 
     @FXML
