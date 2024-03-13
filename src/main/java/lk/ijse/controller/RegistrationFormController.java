@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -11,8 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
+import lk.ijse.dto.UserDto;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegistrationFormController {
 
@@ -23,13 +28,22 @@ public class RegistrationFormController {
     private ImageView imgLock;
 
     @FXML
+    private AnchorPane node;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
     private PasswordField txtPasswordField;
 
     @FXML
     private TextField txtPasswordTextField;
 
     @FXML
-    private AnchorPane node;
+    private TextField txtUserName;
+
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.USER);
+
 
     @FXML
     void changeVisibilityOnAction(ActionEvent event) {
@@ -55,5 +69,38 @@ public class RegistrationFormController {
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.setTitle("Login");
+    }
+
+
+    @FXML
+    void btnRegisterOnAction(ActionEvent event) {
+        String name = txtUserName.getText();
+        String email = txtEmail.getText();
+        String password = txtPasswordField.getText();
+
+        var dto = new UserDto(name,email,password);
+        try {
+            boolean isSaved = userBO.saveUser(dto);
+            if (isSaved) {
+                new Alert(Alert.AlertType.CONFIRMATION,"Saved").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+    }
+
+    @FXML
+    void txtGoToBtnRegistrationOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtGoToEmailOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtGoToPasswordOnAction(ActionEvent event) {
+
     }
 }

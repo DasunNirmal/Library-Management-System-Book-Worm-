@@ -35,7 +35,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER" layoutX="343.0" layoutY="162.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
+      <TextField fx:id="txtUserName" alignment="CENTER" layoutX="343.0" layoutY="162.0" onAction="#txtGoToEmailOnAction" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -55,7 +55,7 @@
             <Image url="@../icons/icons8-check-lock.gif" />
          </image>
       </ImageView>
-      <PasswordField fx:id="txtPasswordField" alignment="CENTER" layoutX="345.0" layoutY="350.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" />
+      <PasswordField fx:id="txtPasswordField" alignment="CENTER" layoutX="345.0" layoutY="350.0" onAction="#txtGoToBtnRegistrationOnAction" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" />
       <ImageView fx:id="imgLock" fitHeight="37.0" fitWidth="37.0" layoutX="353.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/icons8-check-lock.gif" />
@@ -66,7 +66,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </CheckBox>
-      <JFXButton buttonType="RAISED" layoutX="419.0" layoutY="461.0" prefHeight="37.0" prefWidth="108.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" text="Register" textFill="#273c73">
+      <JFXButton buttonType="RAISED" layoutX="419.0" layoutY="461.0" onAction="#btnRegisterOnAction" prefHeight="37.0" prefWidth="108.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" text="Register" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
@@ -79,7 +79,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER" layoutX="343.0" layoutY="256.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
+      <TextField fx:id="txtEmail" alignment="CENTER" layoutX="343.0" layoutY="256.0" onAction="#txtGoToPasswordOnAction" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
