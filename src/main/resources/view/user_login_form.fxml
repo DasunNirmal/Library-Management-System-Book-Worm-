@@ -16,7 +16,7 @@
 <AnchorPane fx:id="rootNode" prefHeight="566.0" prefWidth="710.0" style="-fx-background-color: #192a56;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserLoginFormController">
    <children>
       <CubicCurve controlX1="-6.0" controlX2="-299.0" controlY1="286.449951171875" controlY2="-388.54815673828125" endX="477.9296875" endY="-292.0" fill="#273c738c" layoutX="240.0" layoutY="292.0" startX="477.9296875" startY="276.5452880859375" stroke="#f5bf9300" strokeWidth="3.0" />
-      <TextField alignment="CENTER" layoutX="407.0" layoutY="144.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
+      <TextField fx:id="txtUserName" alignment="CENTER" layoutX="407.0" layoutY="144.0" onAction="#txtGoToPasswordOnAction" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -66,11 +66,6 @@
             <Image url="@../icons/Reading%20book-pana.png" />
          </image>
       </ImageView>
-      <Label layoutX="394.0" layoutY="302.0" text="Forgot Password ?" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="13.0" />
-         </font>
-      </Label>
       <Label layoutX="532.0" layoutY="339.0" text="or" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
@@ -94,7 +89,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <PasswordField fx:id="txtPasswordField" alignment="CENTER" layoutX="409.0" layoutY="244.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" />
+      <PasswordField fx:id="txtPasswordField" alignment="CENTER" layoutX="409.0" layoutY="244.0" onAction="#txtBtnLoginOnAction" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: #f8c291; -fx-background-radius: 25;" />
       <ImageView fx:id="imgLock" fitHeight="37.0" fitWidth="37.0" layoutX="418.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/icons8-check-lock.gif" />
@@ -105,5 +100,10 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </CheckBox>
+      <Hyperlink layoutX="383.0" layoutY="298.0" text="Forgot Password ?" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Hyperlink>
    </children>
 </AnchorPane>

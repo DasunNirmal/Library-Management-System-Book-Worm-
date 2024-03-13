@@ -5,8 +5,10 @@ import lk.ijse.dao.custom.UserDAO;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
     @Override
@@ -33,5 +35,19 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User search(String id) throws SQLException, ClassNotFoundException {
         return null;
+    }
+
+    @Override
+    public boolean isValidUser(String name, String password) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<User> query = session.createQuery("FROM User WHERE userName = :name AND password = :password", User.class);
+        query.setParameter("name",name);
+        query.setParameter("password",password);
+        List<User> userList = query.getResultList();
+        transaction.commit();
+        session.close();
+        return !userList.isEmpty();
     }
 }

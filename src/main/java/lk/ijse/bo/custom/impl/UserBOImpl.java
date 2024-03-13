@@ -16,4 +16,5 @@ public class UserBOImpl implements UserBO {
     public boolean saveUser(UserDto dto) throws SQLException {
         return userDAO.save(new User(dto.getUserName(), dto.getEmail(), dto.getPassword()));
     }
+
 }
