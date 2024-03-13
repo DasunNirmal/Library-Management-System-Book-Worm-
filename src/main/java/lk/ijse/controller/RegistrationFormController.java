@@ -78,9 +78,8 @@ public class RegistrationFormController {
         String email = txtEmail.getText();
         String password = txtPasswordField.getText();
 
-        var dto = new UserDto(name,email,password);
         try {
-            boolean isSaved = userBO.saveUser(dto);
+            boolean isSaved = userBO.saveUser(new UserDto(name,email,password));
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION,"Saved").show();
             }
