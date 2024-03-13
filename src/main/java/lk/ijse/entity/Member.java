@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class MemberDTO {
+public class Member {
     @Id
     private String id;
     private String name;

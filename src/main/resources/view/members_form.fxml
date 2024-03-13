@@ -25,17 +25,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER" layoutX="41.0" layoutY="129.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </TextField>
       <Label layoutX="291.0" layoutY="103.0" text="Name :" textFill="#273c73">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER" layoutX="281.0" layoutY="129.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtName" alignment="CENTER" layoutX="281.0" layoutY="129.0" onAction="#txtGoToPhoneNumberOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -45,7 +40,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER" layoutX="521.0" layoutY="129.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtPhoneNumber" alignment="CENTER" layoutX="521.0" layoutY="129.0" onAction="#txtGoToEmailOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -55,7 +50,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER" layoutX="41.0" layoutY="249.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtEmail" alignment="CENTER" layoutX="41.0" layoutY="249.0" onAction="#txtGoToAddressOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -65,7 +60,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER" layoutX="281.0" layoutY="249.0" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtAddress" alignment="CENTER" layoutX="281.0" layoutY="249.0" onAction="#txtBtnSaveOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -100,7 +95,7 @@
             <Font name="Dyuthi Regular" size="22.0" />
          </font>
       </Label>
-      <JFXButton layoutX="596.0" layoutY="345.0" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
+      <JFXButton layoutX="596.0" layoutY="345.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -108,7 +103,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="681.0" layoutY="345.0" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
+      <JFXButton layoutX="681.0" layoutY="345.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -116,7 +111,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="775.0" layoutY="345.0" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
+      <JFXButton layoutX="775.0" layoutY="345.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -124,5 +119,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <Label fx:id="lblMemberID" layoutX="51.0" layoutY="130.0" prefHeight="36.0" prefWidth="152.0" textFill="#0f1a36">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
