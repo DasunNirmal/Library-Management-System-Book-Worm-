@@ -48,6 +48,14 @@ public class UserDAOImpl implements UserDAO {
         List<User> userList = query.getResultList();
         transaction.commit();
         session.close();
+
+        /*if (!userList.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }*/
+
+        /*Check if the userList is not empty, indicating that a user with the provided credentials exists in the database.*/
         return !userList.isEmpty();
     }
 }
