@@ -39,7 +39,7 @@
             </Label>
             <ImageView fitHeight="69.0" fitWidth="69.0" layoutX="10.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/icons8-people-100.png" />
+                  <Image url="@../icons/icons8-users-100.png" />
                </image>
             </ImageView>
          </children>
@@ -70,17 +70,17 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Label layoutX="118.0" layoutY="337.0" prefHeight="36.0" prefWidth="186.0" text="Borrowed Book List" textFill="#273c73">
+      <Label layoutX="118.0" layoutY="344.0" prefHeight="36.0" prefWidth="186.0" text="Borrowed Book List" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="610.0" layoutY="337.0" prefHeight="36.0" prefWidth="179.0" text="Overdue Book List" textFill="#273c73">
+      <Label layoutX="610.0" layoutY="344.0" prefHeight="36.0" prefWidth="179.0" text="Overdue Book List" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="305.0" layoutY="343.0" text="see all" textFill="#fc9d44">
+      <Hyperlink layoutX="305.0" layoutY="350.0" text="see all" textFill="#fc9d44">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>

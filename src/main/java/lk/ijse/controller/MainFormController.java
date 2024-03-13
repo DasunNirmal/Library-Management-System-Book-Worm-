@@ -53,8 +53,11 @@ public class MainFormController {
     }
 
     @FXML
-    void btnBooksOnAction(ActionEvent event) {
+    void btnBooksOnAction(ActionEvent event) throws IOException {
         selectCss(btnBooks);
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/books_form.fxml"));
+        this.mainNode.getChildren().clear();
+        this.mainNode.getChildren().add(anchorPane);
     }
 
     @FXML
