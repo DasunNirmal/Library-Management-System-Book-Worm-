@@ -13,6 +13,8 @@ target/
 *.iml
 *.ipr
 
+.hs_err_pid4866.log
+.hs_err_pid5027.log
 ### Eclipse ###
 .apt_generated
 .classpath
