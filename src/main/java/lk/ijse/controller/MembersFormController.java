@@ -67,6 +67,15 @@ public class MembersFormController {
         tableListener();
     }
 
+    private void clearFields() {
+        lblMemberID.setText("");
+        txtName.setText("");
+        txtEmail.setText("");
+        txtAddress.setText("");
+        txtPhoneNumber.setText("");
+        txtSearchMembers.setText("");
+    }
+
     private void tableListener() {
         tblMembers.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
             setData(newValue);
@@ -111,7 +120,6 @@ public class MembersFormController {
     }
 
     private void generateNextID() {
-        String previousID = lblMemberID.getText();
         String memberID = membersBO.generateNextMemberID();
         lblMemberID.setText(memberID);
     }
@@ -189,6 +197,12 @@ public class MembersFormController {
         SortedList<MemberTm> sortedList = new SortedList<>(filteredMemberList);
         sortedList.comparatorProperty().bind(tblMembers.comparatorProperty());
         tblMembers.setItems(sortedList);
+    }
+
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+        clearFields();
+        generateNextID();
     }
 
     @FXML
