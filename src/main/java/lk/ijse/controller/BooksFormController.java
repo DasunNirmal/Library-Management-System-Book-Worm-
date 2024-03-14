@@ -2,6 +2,8 @@ package lk.ijse.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,6 +15,7 @@ import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.BranchesDto;
 import lk.ijse.dto.tm.BooksTm;
+import lk.ijse.dto.tm.MemberTm;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -86,6 +89,31 @@ public class BooksFormController {
         generateNextID();
         loadAllBooks();
         setCellValueFactory();
+        tableListener();
+    }
+
+    private void tableListener() {
+        tblBooks.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(BooksTm row) {
+        if (row != null) {
+            lblBookID.setText(row.getBookID());
+            txtTitle.setText(row.getTitle());
+            txtGenre.setText(row.getGenre());
+            txtAuthor.setText(row.getAuthor());
+            txtBookQty.setText(row.getQty());
+            lblBranchName.setText(row.getBranchID());
+            if (row.getAvailability().startsWith("Yes") || row.getAvailability().startsWith("yes")) {
+                rbYes.setSelected(true);
+                rbNo.setSelected(false);
+            } else if (row.getAvailability().startsWith("No") || row.getAvailability().startsWith("no")) {
+                rbYes.setSelected(false);
+                rbNo.setSelected(true);
+            }
+        }
     }
 
     private void setCellValueFactory() {
@@ -180,7 +208,54 @@ public class BooksFormController {
 
     @FXML
     void txtSearchBooksOnAction(KeyEvent event) {
+        searchTableFilter();
+    }
 
+    private void searchTableFilter() {
+        FilteredList<BooksTm> filteredBooList = new FilteredList<>(obList, b -> true);
+        txtSearchBooks.textProperty().addListener((observable,oldValue,newValue) -> {
+            filteredBooList.setPredicate(booksTm -> {
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return true;
+                }
+                String search = newValue.toLowerCase();
+
+                if (booksTm.getBookID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getBookID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getTitle().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getTitle().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getGenre().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getGenre().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getAuthor().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getAuthor().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getBranchID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getBranchID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getAvailability().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getAvailability().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getQty().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getQty().toLowerCase().contains(search)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<BooksTm> sortedList = new SortedList<>(filteredBooList);
+        sortedList.comparatorProperty().bind(tblBooks.comparatorProperty());
+        tblBooks.setItems(sortedList);
     }
 
     @FXML
