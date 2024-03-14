@@ -5,6 +5,7 @@ import lk.ijse.dto.MemberDto;
 
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface MembersBO extends SuperBO {
 
@@ -17,4 +18,6 @@ public interface MembersBO extends SuperBO {
     MemberDto searchMember(String id) throws SQLException, ClassNotFoundException;
 
     String generateNextMemberID();
+
+    List<MemberDto> getAllMembers() throws SQLException, ClassNotFoundException;
 }

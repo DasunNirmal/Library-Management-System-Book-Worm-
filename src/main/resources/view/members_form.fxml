@@ -65,16 +65,16 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TableView layoutX="41.0" layoutY="384.0" prefHeight="319.0" prefWidth="822.0">
+      <TableView fx:id="tblMembers" layoutX="41.0" layoutY="384.0" prefHeight="319.0" prefWidth="822.0" style="-fx-background-color: white;" stylesheets="@../style/tableView.css">
         <columns>
-          <TableColumn prefWidth="106.0" text="Member ID" />
-          <TableColumn prefWidth="176.0" text="Name" />
-            <TableColumn prefWidth="175.0" text="Email" />
-            <TableColumn prefWidth="206.0" text="Address" />
-            <TableColumn prefWidth="157.0" text="Phone Number" />
+          <TableColumn fx:id="colMemberID" prefWidth="106.0" text="Member ID" />
+          <TableColumn fx:id="colName" prefWidth="176.0" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="175.0" text="Email" />
+            <TableColumn fx:id="colAddress" prefWidth="206.0" text="Address" />
+            <TableColumn fx:id="colPhoneNumber" prefWidth="157.0" text="Phone Number" />
         </columns>
       </TableView>
-      <TextField alignment="CENTER" layoutX="188.0" layoutY="344.0" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtSearchMembers" alignment="CENTER" layoutX="188.0" layoutY="344.0" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

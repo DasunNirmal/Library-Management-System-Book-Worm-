@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class MembersDAOImpl implements MembersDAO {
     @Override
@@ -34,6 +35,16 @@ public class MembersDAOImpl implements MembersDAO {
     @Override
     public Member search(String id) throws SQLException, ClassNotFoundException {
         return null;
+    }
+
+    @Override
+    public List<Member> getAll() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Member> list = session.createNativeQuery("SELECT * FROM Member", Member.class).list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 
     @Override

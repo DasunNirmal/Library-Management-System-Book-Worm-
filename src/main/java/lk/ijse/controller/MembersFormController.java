@@ -1,18 +1,39 @@
 package lk.ijse.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.MembersBO;
 import lk.ijse.dto.MemberDto;
+import lk.ijse.dto.tm.MemberTm;
 
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class MembersFormController {
+
+    @FXML
+    private TableColumn<?, ?> colAddress;
+
+    @FXML
+    private TableColumn<?, ?> colEmail;
+
+    @FXML
+    private TableColumn<?, ?> colMemberID;
+
+    @FXML
+    private TableColumn<?, ?> colName;
+
+    @FXML
+    private TableColumn<?, ?> colPhoneNumber;
+
+    @FXML
+    private TableView<MemberTm> tblMembers;
 
     @FXML
     private Label lblMemberID;
@@ -33,6 +54,35 @@ public class MembersFormController {
 
     public void initialize() {
         generateNextID();
+        LoadAllMembers();
+        setCellValueFactory();
+    }
+
+    private void setCellValueFactory() {
+        colMemberID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        tblMembers.setId("my-table");
+    }
+
+    private void LoadAllMembers() {
+        ObservableList<MemberTm> obList = FXCollections.observableArrayList();
+        try {
+            obList.clear();
+            List<MemberDto> dtoList = membersBO.getAllMembers();
+            for (MemberDto dto : dtoList) {
+                obList.add(
+                        new MemberTm(
+                                dto.getId(), dto.getName(), dto.getPhoneNumber(), dto.getEmail(), dto.getAddress()));
+            }
+            tblMembers.setItems(obList);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void generateNextID() {
@@ -53,6 +103,7 @@ public class MembersFormController {
             boolean isSaved = membersBO.saveMember(new MemberDto(id,name,phoneNumber,email,address));
             if (isSaved) {
                 generateNextID();
+                LoadAllMembers();
                 new Alert(Alert.AlertType.INFORMATION,"Member Saved").show();
             }
         } catch (SQLException e) {

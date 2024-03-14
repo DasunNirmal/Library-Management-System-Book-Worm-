@@ -7,6 +7,8 @@ import lk.ijse.dto.MemberDto;
 import lk.ijse.entity.Member;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MembersBOImpl implements MembersBO {
 
@@ -35,5 +37,15 @@ public class MembersBOImpl implements MembersBO {
     @Override
     public String generateNextMemberID() {
         return membersDAO.generateMemberID();
+    }
+
+    @Override
+    public List<MemberDto> getAllMembers() throws SQLException, ClassNotFoundException {
+        List<MemberDto> members = new ArrayList<>();
+        List<Member> list = membersDAO.getAll();
+        for (Member member : list) {
+            members.add(new MemberDto(member.getId(),member.getName(),member.getPhoneNumber(),member.getEmail(),member.getAddress()));
+        }
+        return members;
     }
 }
