@@ -21,12 +21,12 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean updateBranch(BranchesDto dto) throws SQLException, ClassNotFoundException {
-        return false;
+        return branchDAO.update(new Branches(dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),dto.getAddress()));
     }
 
     @Override
     public boolean deleteBranch(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return branchDAO.delete(id);
     }
 
     @Override

@@ -3,7 +3,6 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.BranchDAO;
 import lk.ijse.entity.Branches;
-import lk.ijse.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -25,12 +24,24 @@ public class BranchDAOImpl implements BranchDAO {
 
     @Override
     public boolean update(Branches dto) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(dto);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.createNativeQuery("DELETE FROM Branches WHERE id='"+id+"'", Branches.class).executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

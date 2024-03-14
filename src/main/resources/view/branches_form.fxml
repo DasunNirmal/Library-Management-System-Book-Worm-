@@ -55,13 +55,13 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TableView fx:id="tblBranches" layoutX="45.0" layoutY="368.0" prefHeight="333.0" prefWidth="795.0" stylesheets="@../style/tableView.css">
+      <TableView fx:id="tblBranches" layoutX="45.0" layoutY="368.0" prefHeight="333.0" prefWidth="802.0" stylesheets="@../style/tableView.css">
         <columns>
           <TableColumn fx:id="colBranchID" prefWidth="135.0" text="Branch ID" />
           <TableColumn fx:id="colBranchName" prefWidth="154.0" text="Branch Name" />
             <TableColumn fx:id="colBranchManager" prefWidth="176.0" text="Branch Manager" />
             <TableColumn fx:id="colAddress" prefWidth="185.0" text="Adderss" />
-            <TableColumn fx:id="colStaff" prefWidth="144.0" text="Branch Staff" />
+            <TableColumn fx:id="colStaff" prefWidth="146.0" text="Branch Staff" />
         </columns>
       </TableView>
       <Label layoutX="644.0" layoutY="93.0" text="Branch Staff :" textFill="#273c73">
@@ -95,7 +95,7 @@
             <Image url="@../icons/icons8-search-100.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="566.0" layoutY="328.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
+      <JFXButton layoutX="486.0" layoutY="328.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -103,7 +103,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="651.0" layoutY="328.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
+      <JFXButton layoutX="571.0" layoutY="328.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -111,7 +111,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="745.0" layoutY="328.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
+      <JFXButton layoutX="665.0" layoutY="328.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -119,10 +119,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label fx:id="lblBranchID" layoutX="55.0" layoutY="115.0" prefHeight="36.0" prefWidth="152.0" textFill="#0f1a36">
+      <Label fx:id="lblBranchID" layoutX="54.0" layoutY="115.0" prefHeight="36.0" prefWidth="152.0" textFill="#0f1a36">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <JFXButton layoutX="755.0" layoutY="328.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Clear" textFill="#f8c291">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>
