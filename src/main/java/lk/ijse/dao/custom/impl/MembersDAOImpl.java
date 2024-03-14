@@ -37,7 +37,7 @@ public class MembersDAOImpl implements MembersDAO {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.createNativeQuery("DELETE FROM Member WHERE id='"+id+"'", Member.class).executeUpdate();
+        session.createNativeQuery("DELETE FROM Member WHERE id ='"+id+"'", Member.class).executeUpdate();
         transaction.commit();
         session.close();
         return true;

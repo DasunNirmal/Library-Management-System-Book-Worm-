@@ -180,7 +180,27 @@ public class BooksFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        String id = lblBookID.getText();
+        String title = txtTitle.getText();
+        String genre = txtGenre.getText();
+        String author = txtAuthor.getText();
+        String qty = txtBookQty.getText();
+        String branchName = lblBranchName.getText();
+        if (!rbYes.isSelected() && !rbNo.isSelected()) {
+            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
+        }
+        try {
+            boolean isDeleted = booksBO.deleteBooks(id);
+            if (isDeleted) {
+                generateNextID();
+                loadAllBooks();
+                new Alert(Alert.AlertType.CONFIRMATION,"Book Deleted").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

@@ -30,7 +30,13 @@ public class BooksDAOImpl implements BooksDAO {
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.createNativeQuery("DELETE FROM Books WHERE bookID ='"+id+"'", Books.class).executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

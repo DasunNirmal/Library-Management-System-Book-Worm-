@@ -28,7 +28,7 @@ public class BookBOImpl implements BooksBO {
 
     @Override
     public boolean deleteBooks(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return booksDAO.delete(id);
     }
 
     @Override
