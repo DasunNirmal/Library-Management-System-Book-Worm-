@@ -26,7 +26,7 @@ public class MembersBOImpl implements MembersBO {
 
     @Override
     public boolean deleteMember(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return membersDAO.delete(id);
     }
 
     @Override

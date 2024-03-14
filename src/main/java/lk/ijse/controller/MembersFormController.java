@@ -171,7 +171,25 @@ public class MembersFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        String id = lblMemberID.getText();
+        String name = txtName.getText();
+        String phoneNumber = txtPhoneNumber.getText();
+        String email = txtEmail.getText();
+        String address = txtAddress.getText();
 
+        try {
+            boolean isDeleted = membersBO.deleteMember(id);
+            if (isDeleted) {
+                LoadAllMembers();
+                clearFields();
+                generateNextID();
+                new Alert(Alert.AlertType.INFORMATION,"Member Deleted").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -226,21 +244,21 @@ public class MembersFormController {
 
     @FXML
     void txtBtnSaveOnAction(ActionEvent event) {
-
+        btnSaveOnAction(new ActionEvent());
     }
 
     @FXML
     void txtGoToAddressOnAction(ActionEvent event) {
-
+        txtAddress.requestFocus();
     }
 
     @FXML
     void txtGoToEmailOnAction(ActionEvent event) {
-
+        txtEmail.requestFocus();
     }
 
     @FXML
     void txtGoToPhoneNumberOnAction(ActionEvent event) {
-
+        txtPhoneNumber.requestFocus();
     }
 }
