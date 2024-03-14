@@ -135,9 +135,9 @@ public class MembersFormController {
         try {
             boolean isSaved = membersBO.saveMember(new MemberDto(id,name,phoneNumber,email,address));
             if (isSaved) {
-                generateNextID();
-                LoadAllMembers();
                 clearFields();
+                LoadAllMembers();
+                generateNextID();
                 new Alert(Alert.AlertType.INFORMATION,"Member Saved").show();
             }
         } catch (SQLException e) {
