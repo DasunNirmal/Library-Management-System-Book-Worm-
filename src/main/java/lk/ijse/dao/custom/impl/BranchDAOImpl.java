@@ -3,6 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.BranchDAO;
 import lk.ijse.entity.Branches;
+import lk.ijse.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -39,7 +40,12 @@ public class BranchDAOImpl implements BranchDAO {
 
     @Override
     public List<Branches> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Branches> list = session.createNativeQuery("SELECT * FROM Branches", Branches.class).list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 
     @Override

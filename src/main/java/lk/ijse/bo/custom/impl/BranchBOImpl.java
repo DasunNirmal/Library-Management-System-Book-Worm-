@@ -7,6 +7,7 @@ import lk.ijse.dto.BranchesDto;
 import lk.ijse.entity.Branches;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BranchBOImpl implements BranchBO {
@@ -35,7 +36,13 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public List<BranchesDto> getAllBranches() throws SQLException, ClassNotFoundException {
-        return null;
+        List<BranchesDto> branches = new ArrayList<>();
+        List<Branches> list = branchDAO.getAll();
+        for (Branches branch : list) {
+            branches.add(new BranchesDto(
+                    branch.getId(),branch.getBranchName(),branch.getStaff(),branch.getManager(),branch.getAddress()));
+        }
+        return branches;
     }
 
     @Override

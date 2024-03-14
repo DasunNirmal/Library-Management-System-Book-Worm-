@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 public class Branches {
@@ -17,7 +17,4 @@ public class Branches {
     private String staff;
     private String manager;
     private String address;
-
-    /*@OneToMany(mappedBy = "branches")
-    private List<Books> books;*/
 }
