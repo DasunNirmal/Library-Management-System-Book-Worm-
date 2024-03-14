@@ -55,7 +55,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TableView fx:id="tblBranches" layoutX="45.0" layoutY="368.0" prefHeight="333.0" prefWidth="795.0">
+      <TableView fx:id="tblBranches" layoutX="45.0" layoutY="368.0" prefHeight="333.0" prefWidth="795.0" stylesheets="@../style/tableView.css">
         <columns>
           <TableColumn fx:id="colBranchID" prefWidth="135.0" text="Branch ID" />
           <TableColumn fx:id="colBranchName" prefWidth="154.0" text="Branch Name" />
