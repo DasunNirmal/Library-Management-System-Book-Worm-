@@ -46,7 +46,20 @@ public class BranchDAOImpl implements BranchDAO {
 
     @Override
     public Branches search(String id) throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Branches entity = null;
+        Query<Branches> query = session.createQuery("FROM Branches WHERE id = :id", Branches.class);
+        query.setParameter("id",id);
+        List<Branches> branchesList = query.getResultList();
+
+        if (!branchesList.isEmpty()) {
+            entity = branchesList.get(0);
+        }
+        transaction.commit();
+        session.close();
+        return entity;
     }
 
     @Override

@@ -21,7 +21,8 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean updateBranch(BranchesDto dto) throws SQLException, ClassNotFoundException {
-        return branchDAO.update(new Branches(dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),dto.getAddress()));
+        return branchDAO.update(new Branches(
+                dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),dto.getAddress()));
     }
 
     @Override
@@ -31,7 +32,12 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public BranchesDto searchBranch(String id) throws SQLException, ClassNotFoundException {
-        return null;
+        Branches branches = branchDAO.search(id);
+        if (branches != null) {
+            return new BranchesDto(branches.getId(),branches.getBranchName(),branches.getStaff(),branches.getManager(),branches.getAddress());
+        } else {
+            return null;
+        }
     }
 
     @Override
