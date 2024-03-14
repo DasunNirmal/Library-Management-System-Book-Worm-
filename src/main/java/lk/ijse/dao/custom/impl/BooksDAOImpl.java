@@ -3,6 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.entity.Books;
+import lk.ijse.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -39,7 +40,12 @@ public class BooksDAOImpl implements BooksDAO {
 
     @Override
     public List<Books> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Books> list = session.createNativeQuery("SELECT * FROM Books", Books.class).list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 
     @Override

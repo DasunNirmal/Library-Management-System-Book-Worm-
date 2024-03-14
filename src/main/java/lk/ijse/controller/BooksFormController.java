@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BooksBO;
@@ -12,10 +13,9 @@ import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.BranchesDto;
 import lk.ijse.dto.tm.BooksTm;
-import lk.ijse.dto.tm.MemberTm;
-import lk.ijse.entity.Branches;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class BooksFormController {
 
@@ -53,7 +53,7 @@ public class BooksFormController {
     private RadioButton rbYes;
 
     @FXML
-    private TableView<?> tblBooks;
+    private TableView<BooksTm> tblBooks;
 
     @FXML
     private ToggleGroup tgAvailability;
@@ -84,6 +84,37 @@ public class BooksFormController {
 
     public void initialize() {
         generateNextID();
+        loadAllBooks();
+        setCellValueFactory();
+    }
+
+    private void setCellValueFactory() {
+        colBookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colBranch.setCellValueFactory(new PropertyValueFactory<>("branchID"));
+        colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        tblBooks.setId("my-table");
+    }
+
+    private void loadAllBooks() {
+        try {
+            obList.clear();
+            List<BooksDto> dtoList = booksBO.getAllBooks();
+            for (BooksDto dto : dtoList) {
+                obList.add(new BooksTm(
+                        dto.getBookID(),
+                        dto.getTitle(),
+                        dto.getGenre(), dto.getAuthor(), dto.getQty(), dto.getAvailability(), dto.getBranchID()));
+            }
+            tblBooks.setItems(obList);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void generateNextID() {
@@ -110,6 +141,7 @@ public class BooksFormController {
             boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,qty,available,branchName));
             if (isSaved) {
                 generateNextID();
+                loadAllBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book is Added").show();
             }
         } catch (SQLException e) {

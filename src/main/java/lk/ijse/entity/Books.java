@@ -18,7 +18,7 @@ public class Books {
     private String title;
     private String genre;
     private String author;
-    private String qty;
-    private String availability;
     private String branchID;
+    private String availability;
+    private String qty;
 }

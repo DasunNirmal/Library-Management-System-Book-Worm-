@@ -7,6 +7,7 @@ import lk.ijse.dto.BooksDto;
 import lk.ijse.entity.Books;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookBOImpl implements BooksBO {
@@ -37,7 +38,13 @@ public class BookBOImpl implements BooksBO {
 
     @Override
     public List<BooksDto> getAllBooks() throws SQLException, ClassNotFoundException {
-        return null;
+        List<BooksDto> books = new ArrayList<>();
+        List<Books> list = booksDAO.getAll();
+        for (Books book : list) {
+            books.add(new BooksDto(book.getBookID(),
+                    book.getTitle(), book.getGenre(), book.getAuthor(), book.getQty(), book.getAvailability(), book.getBranchID()));
+        }
+        return books;
     }
 
     @Override
