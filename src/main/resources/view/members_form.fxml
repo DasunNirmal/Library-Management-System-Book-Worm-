@@ -74,7 +74,7 @@
             <TableColumn fx:id="colPhoneNumber" prefWidth="157.0" text="Phone Number" />
         </columns>
       </TableView>
-      <TextField fx:id="txtSearchMembers" alignment="CENTER" layoutX="188.0" layoutY="344.0" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtSearchMembers" alignment="CENTER" layoutX="188.0" layoutY="344.0" onKeyPressed="#txtSearchOnAction" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

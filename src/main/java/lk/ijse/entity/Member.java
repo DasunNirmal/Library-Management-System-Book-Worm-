@@ -14,7 +14,7 @@ public class Member {
     @Id
     private String id;
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String address;
 }

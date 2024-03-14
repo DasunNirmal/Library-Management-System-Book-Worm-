@@ -2,10 +2,13 @@ package lk.ijse.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.MembersBO;
 import lk.ijse.dto.MemberDto;
@@ -36,6 +39,9 @@ public class MembersFormController {
     private TableView<MemberTm> tblMembers;
 
     @FXML
+    private TextField txtSearchMembers;
+
+    @FXML
     private Label lblMemberID;
 
     @FXML
@@ -50,13 +56,33 @@ public class MembersFormController {
     @FXML
     private TextField txtPhoneNumber;
 
+    private ObservableList<MemberTm> obList = FXCollections.observableArrayList();
+
     MembersBO membersBO = (MembersBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.MEMBERS);
 
     public void initialize() {
         generateNextID();
         LoadAllMembers();
         setCellValueFactory();
+        tableListener();
     }
+
+    private void tableListener() {
+        tblMembers.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(MemberTm row) {
+        if (row != null) {
+            lblMemberID.setText(row.getId());
+            txtName.setText(row.getName());
+            txtPhoneNumber.setText(String.valueOf(row.getPhoneNumber()));
+            txtEmail.setText(row.getEmail());
+            txtAddress.setText(row.getAddress());
+        }
+    }
+
 
     private void setCellValueFactory() {
         colMemberID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -68,7 +94,6 @@ public class MembersFormController {
     }
 
     private void LoadAllMembers() {
-        ObservableList<MemberTm> obList = FXCollections.observableArrayList();
         try {
             obList.clear();
             List<MemberDto> dtoList = membersBO.getAllMembers();
@@ -95,7 +120,7 @@ public class MembersFormController {
     void btnSaveOnAction(ActionEvent event) {
         String id = lblMemberID.getText();
         String name = txtName.getText();
-        int phoneNumber = Integer.parseInt(txtPhoneNumber.getText());
+        String phoneNumber = txtPhoneNumber.getText();
         String email = txtEmail.getText();
         String address = txtAddress.getText();
 
@@ -120,6 +145,50 @@ public class MembersFormController {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
+    }
+
+    @FXML
+    void txtSearchOnAction(KeyEvent event) {
+        searchTableFilter();
+    }
+
+    private void searchTableFilter() {
+        FilteredList<MemberTm> filteredMemberList = new FilteredList<>(obList, b -> true);
+        txtSearchMembers.textProperty().addListener((observable,oldValue,newValue) -> {
+            filteredMemberList.setPredicate(memberTm -> {
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return true;
+                }
+                String search = newValue.toLowerCase();
+
+                if (memberTm.getId().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getId().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getName().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getName().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getPhoneNumber().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getPhoneNumber().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getEmail().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getEmail().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getAddress().toLowerCase().contains(search)) {
+                    return true;
+                } else if (memberTm.getAddress().toLowerCase().contains(search)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<MemberTm> sortedList = new SortedList<>(filteredMemberList);
+        sortedList.comparatorProperty().bind(tblMembers.comparatorProperty());
+        tblMembers.setItems(sortedList);
     }
 
     @FXML
