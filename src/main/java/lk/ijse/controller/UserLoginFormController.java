@@ -97,11 +97,15 @@ public class UserLoginFormController {
 
     @FXML
     void txtBtnLoginOnAction(ActionEvent event) {
-
+        btnLoginOnAction(new ActionEvent());
     }
 
     @FXML
     void txtGoToPasswordOnAction(ActionEvent event) {
-
+        txtPasswordField.requestFocus();
+    }
+    @FXML
+    void txtGoToLoginBtnOnAction(ActionEvent event) {
+        txtPasswordField.requestFocus();
     }
 }

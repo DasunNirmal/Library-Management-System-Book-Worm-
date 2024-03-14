@@ -90,16 +90,16 @@ public class RegistrationFormController {
 
     @FXML
     void txtGoToBtnRegistrationOnAction(ActionEvent event) {
-
+        btnRegisterOnAction(new ActionEvent());
     }
 
     @FXML
     void txtGoToEmailOnAction(ActionEvent event) {
-
+        txtEmail.requestFocus();
     }
 
     @FXML
     void txtGoToPasswordOnAction(ActionEvent event) {
-
+        btnRegisterOnAction(new ActionEvent());
     }
 }
