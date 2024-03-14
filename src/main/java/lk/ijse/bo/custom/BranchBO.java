@@ -19,4 +19,6 @@ public interface BranchBO extends SuperBO {
     List<BranchesDto> getAllBranches() throws SQLException, ClassNotFoundException;
 
     String generateBranchID();
+
+    String[] searchBranchID(String id);
 }

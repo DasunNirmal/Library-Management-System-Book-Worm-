@@ -15,7 +15,7 @@ import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.BranchesDto;
 import lk.ijse.dto.tm.BooksTm;
-import lk.ijse.dto.tm.MemberTm;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -90,12 +90,25 @@ public class BooksFormController {
         loadAllBooks();
         setCellValueFactory();
         tableListener();
+        autoComplete();
     }
 
     private void tableListener() {
         tblBooks.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
             setData(newValue);
         });
+    }
+
+    private void clearFields() {
+        lblBookID.setText("");
+        txtTitle.setText("");
+        txtGenre.setText("");
+        txtAuthor.setText("");
+        txtBookQty.setText("");
+        lblBranchName.setText("");
+        txtSearchBranch.setText("");
+        rbYes.setSelected(false);
+        rbNo.setSelected(false);
     }
 
     private void setData(BooksTm row) {
@@ -168,6 +181,7 @@ public class BooksFormController {
         try {
             boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,qty,available,branchName));
             if (isSaved) {
+                clearFields();
                 generateNextID();
                 loadAllBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book is Added").show();
@@ -192,6 +206,7 @@ public class BooksFormController {
         try {
             boolean isDeleted = booksBO.deleteBooks(id);
             if (isDeleted) {
+                clearFields();
                 generateNextID();
                 loadAllBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book Deleted").show();
@@ -205,7 +220,32 @@ public class BooksFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        String id = lblBookID.getText();
+        String title = txtTitle.getText();
+        String genre = txtGenre.getText();
+        String author = txtAuthor.getText();
+        String qty = txtBookQty.getText();
+        String branchName = lblBranchName.getText();
+        String available = null;
+        if (rbYes.isSelected()) {
+            available = rbYes.getText();
+        } else if (rbNo.isSelected()) {
+            available = rbNo.getText();
+        }
 
+        try {
+            boolean isUpdated = booksBO.updateBooks(new BooksDto(id,title,genre,author,qty,available,branchName));
+            if (isUpdated) {
+                clearFields();
+                loadAllBooks();
+                generateNextID();
+                new Alert(Alert.AlertType.CONFIRMATION,"Book Is Updated").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -215,6 +255,7 @@ public class BooksFormController {
             BranchesDto branchesDto;
             branchesDto = branchBO.searchBranch(searchInput);
             if (branchesDto != null) {
+                txtSearchBranch.setText("");
                 lblBranchName.setText(branchesDto.getBranchName());
             } else {
                 new Alert(Alert.AlertType.ERROR,"Branch Doesn't Exist").show();
@@ -278,23 +319,34 @@ public class BooksFormController {
         tblBooks.setItems(sortedList);
     }
 
+    private void autoComplete() {
+        String[] id = branchBO.searchBranchID(txtSearchBranch.getText());
+        TextFields.bindAutoCompletion(txtSearchBranch, id);
+    }
+
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+        clearFields();
+        generateNextID();
+    }
+
     @FXML
     void txtGoToAuthorOnAction(ActionEvent event) {
-
+        txtAuthor.requestFocus();
     }
 
     @FXML
     void txtGoToBookCountOnAction(ActionEvent event) {
-
+        txtBookQty.requestFocus();
     }
 
     @FXML
     void txtGoToGenreOnAction(ActionEvent event) {
-
+        txtGenre.requestFocus();
     }
 
     @FXML
     void txtGoToSearchBranchOnAction(ActionEvent event) {
-
+        txtSearchBranch.requestFocus();
     }
 }

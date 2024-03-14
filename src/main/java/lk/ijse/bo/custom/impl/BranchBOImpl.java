@@ -55,4 +55,9 @@ public class BranchBOImpl implements BranchBO {
     public String generateBranchID() {
         return branchDAO.generateNextID();
     }
+
+    @Override
+    public String[] searchBranchID(String id) {
+        return branchDAO.searchID(id);
+    }
 }

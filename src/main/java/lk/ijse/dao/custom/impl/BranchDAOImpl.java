@@ -102,4 +102,20 @@ public class BranchDAOImpl implements BranchDAO {
             return "R001";
         }
     }
+
+    @Override
+    public String[] searchID(String id) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<String> query = session.createQuery("SELECT id FROM Branches WHERE id LIKE :id", String.class);
+        query.setParameter("id", "%" + id + "%");
+
+        List<String> branches = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return branches.toArray(new String[0]);
+    }
 }

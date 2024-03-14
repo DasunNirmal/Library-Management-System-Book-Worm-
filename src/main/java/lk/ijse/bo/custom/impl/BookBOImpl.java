@@ -23,7 +23,9 @@ public class BookBOImpl implements BooksBO {
 
     @Override
     public boolean updateBooks(BooksDto dto) throws SQLException, ClassNotFoundException {
-        return false;
+        return booksDAO.update(new Books(
+                dto.getBookID(),
+                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getQty(), dto.getAvailability(), dto.getBranchID()));
     }
 
     @Override
