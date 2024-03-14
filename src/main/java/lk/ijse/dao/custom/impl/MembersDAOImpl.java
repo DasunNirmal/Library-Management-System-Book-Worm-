@@ -24,7 +24,12 @@ public class MembersDAOImpl implements MembersDAO {
 
     @Override
     public boolean update(Member dto) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(dto);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

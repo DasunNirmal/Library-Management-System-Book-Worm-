@@ -21,7 +21,7 @@ public class MembersBOImpl implements MembersBO {
 
     @Override
     public boolean updateMember(MemberDto dto) throws SQLException, ClassNotFoundException {
-        return false;
+        return membersDAO.update(new Member(dto.getId(), dto.getName(), dto.getPhoneNumber(), dto.getEmail(), dto.getAddress()));
     }
 
     @Override

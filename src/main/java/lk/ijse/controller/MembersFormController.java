@@ -137,6 +137,7 @@ public class MembersFormController {
             if (isSaved) {
                 generateNextID();
                 LoadAllMembers();
+                clearFields();
                 new Alert(Alert.AlertType.INFORMATION,"Member Saved").show();
             }
         } catch (SQLException e) {
@@ -147,7 +148,25 @@ public class MembersFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        String id = lblMemberID.getText();
+        String name = txtName.getText();
+        String phoneNumber = txtPhoneNumber.getText();
+        String email = txtEmail.getText();
+        String address = txtAddress.getText();
 
+        try {
+            boolean isUpdated = membersBO.updateMember(new MemberDto(id,name,phoneNumber,email,address));
+            if (isUpdated) {
+                LoadAllMembers();
+                clearFields();
+                generateNextID();
+                new Alert(Alert.AlertType.INFORMATION,"Member Updated").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
