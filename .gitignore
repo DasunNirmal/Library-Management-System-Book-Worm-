@@ -3,8 +3,6 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-hs_err_pid2697.log
-hs_err_pid3465.log
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
