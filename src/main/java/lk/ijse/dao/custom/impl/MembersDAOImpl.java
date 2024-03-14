@@ -59,27 +59,27 @@ public class MembersDAOImpl implements MembersDAO {
     }
 
     @Override
-    public String generateMemberID() {
+    public String generateNextID() {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
 
         Query<String> query = session.createQuery("SELECT id FROM Member ORDER BY id DESC LIMIT 1", String.class);
         query.setMaxResults(1);
-        String currentComplainID = query.uniqueResult();
+        String currentMemberID = query.uniqueResult();
 
         transaction.commit();
         session.close();
 
-        if (currentComplainID != null) {
-            return splitComplainID(currentComplainID);
+        if (currentMemberID != null) {
+            return splitMemberID(currentMemberID);
         } else {
-            return splitComplainID(null);
+            return splitMemberID(null);
         }
     }
 
-    private String splitComplainID(String currentComplainID) {
-        if (currentComplainID != null) {
-            String[] split = currentComplainID.split("M");
+    private String splitMemberID(String currentMemberID) {
+        if (currentMemberID != null) {
+            String[] split = currentMemberID.split("M");
 
             int id = Integer.parseInt(split[1]);
             id++;

@@ -36,7 +36,7 @@ public class MembersBOImpl implements MembersBO {
 
     @Override
     public String generateNextMemberID() {
-        return membersDAO.generateMemberID();
+        return membersDAO.generateNextID();
     }
 
     @Override

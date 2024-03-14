@@ -43,6 +43,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public String generateNextID() {
+        return null;
+    }
+
+    @Override
     public boolean isValidUser(String name, String password) {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();

@@ -85,7 +85,7 @@ public class UserLoginFormController {
     }
 
     private void goToMainForm() throws IOException {
-        rootNode.getScene().getWindow().hide();
+        /*rootNode.getScene().getWindow().hide();*/
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_form.fxml"));
         Parent root = loader.load();
