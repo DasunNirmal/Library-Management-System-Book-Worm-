@@ -13,7 +13,13 @@ import java.util.List;
 public class BranchDAOImpl implements BranchDAO {
     @Override
     public boolean save(Branches dto) throws SQLException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(dto);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

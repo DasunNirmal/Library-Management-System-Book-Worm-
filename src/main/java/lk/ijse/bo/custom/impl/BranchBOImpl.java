@@ -3,6 +3,7 @@ package lk.ijse.bo.custom.impl;
 import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BranchDAO;
+import lk.ijse.dto.BranchesDto;
 import lk.ijse.entity.Branches;
 
 import java.sql.SQLException;
@@ -13,12 +14,12 @@ public class BranchBOImpl implements BranchBO {
     BranchDAO branchDAO = (BranchDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BRANCHES);
 
     @Override
-    public boolean saveBranch(Branches dto) throws SQLException {
-        return false;
+    public boolean saveBranch(BranchesDto dto) throws SQLException {
+        return branchDAO.save(new Branches(dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),dto.getAddress()));
     }
 
     @Override
-    public boolean updateBranch(Branches dto) throws SQLException, ClassNotFoundException {
+    public boolean updateBranch(BranchesDto dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
@@ -28,12 +29,12 @@ public class BranchBOImpl implements BranchBO {
     }
 
     @Override
-    public Branches searchBranch(String id) throws SQLException, ClassNotFoundException {
+    public BranchesDto searchBranch(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public List<Branches> getAllBranches() throws SQLException, ClassNotFoundException {
+    public List<BranchesDto> getAllBranches() throws SQLException, ClassNotFoundException {
         return null;
     }
 

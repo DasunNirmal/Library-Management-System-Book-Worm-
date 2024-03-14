@@ -2,13 +2,13 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BranchBO;
+import lk.ijse.dto.BranchesDto;
+
+import java.sql.SQLException;
 
 public class BranchesFormController {
 
@@ -61,7 +61,21 @@ public class BranchesFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        String id = lblBranchID.getText();
+        String branchName = txtBranchName.getText();
+        String staff = txtStaff.getText();
+        String manager = txtManager.getText();
+        String address = txtAddress.getText();
 
+        try {
+            boolean isSaved = branchBO.saveBranch(new BranchesDto(id,branchName,staff,manager,address));
+            if (isSaved) {
+                generateNextID();
+                new Alert(Alert.AlertType.INFORMATION,"Branch Added Successfully").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     @FXML
