@@ -49,4 +49,18 @@ public class TransactionBOImpl implements TransactionBO {
     public String generateTransactionID() {
         return transactionDAO.generateNextID();
     }
+
+    @Override
+    public List<TransactionDto> getAllOverDueBooks() {
+        List<TransactionDto> transactions = new ArrayList<>();
+        List<Transactions> list = transactionDAO.getAllOverDueBooks();
+        for (Transactions transaction : list) {
+            transactions.add(new TransactionDto(
+                    transaction.getBorrowingID(),transaction.getMemberID(),transaction.getMemberName(),
+                    transaction.getBook(),transaction.getGenre(),
+                    transaction.getBorrowingDate(),transaction.getReturningDate(),transaction.getBooks()
+            ));
+        }
+        return transactions;
+    }
 }

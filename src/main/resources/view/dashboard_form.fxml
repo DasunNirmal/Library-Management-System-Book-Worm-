@@ -58,29 +58,33 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TableView layoutX="37.0" layoutY="387.0" prefHeight="323.0" prefWidth="490.0">
+      <TableView fx:id="tblBorrowedList" layoutX="12.0" layoutY="377.0" prefHeight="323.0" prefWidth="498.0" stylesheets="@../style/tableView.css">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colTID" prefWidth="89.0" text="Tran_ID" />
+          <TableColumn fx:id="colBMemberID" prefWidth="98.0" text="Member ID" />
+            <TableColumn fx:id="colBMember" prefWidth="119.0" text="Member" />
+            <TableColumn fx:id="colBBook" prefWidth="191.0" text="Book" />
         </columns>
       </TableView>
-      <TableView layoutX="594.0" layoutY="387.0" prefHeight="323.0" prefWidth="395.0">
+      <TableView fx:id="tblOverdueList" layoutX="525.0" layoutY="377.0" prefHeight="323.0" prefWidth="498.0" stylesheets="@../style/tableView.css">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="colMemberID" prefWidth="124.0" text="Member ID" />
+            <TableColumn fx:id="colMember" prefWidth="149.0" text="Member" />
+            <TableColumn fx:id="colBookID" prefWidth="109.0" text="Book ID" />
+            <TableColumn fx:id="colBookName" prefWidth="114.0" text="Book Name" />
          </columns>
       </TableView>
-      <Label layoutX="48.0" layoutY="344.0" prefHeight="36.0" prefWidth="186.0" text="Borrowed Book List" textFill="#273c73">
+      <Label layoutX="48.0" layoutY="334.0" prefHeight="36.0" prefWidth="186.0" text="Borrowed Book List" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="610.0" layoutY="344.0" prefHeight="36.0" prefWidth="179.0" text="Overdue Book List" textFill="#273c73">
+      <Label layoutX="610.0" layoutY="334.0" prefHeight="36.0" prefWidth="179.0" text="Overdue Book List" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="235.0" layoutY="350.0" text="see all" textFill="#fc9d44">
+      <Hyperlink layoutX="235.0" layoutY="340.0" text="see all" textFill="#fc9d44">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>

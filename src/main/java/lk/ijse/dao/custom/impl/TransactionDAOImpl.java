@@ -83,4 +83,14 @@ public class TransactionDAOImpl implements TransactionDAO {
             return "T001";
         }
     }
+
+    @Override
+    public List<Transactions> getAllOverDueBooks() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Transactions> list = session.createNativeQuery("SELECT * FROM Transactions WHERE returningDate < CURRENT_DATE", Transactions.class).list();
+        transaction.commit();
+        session.close();
+        return list;
+    }
 }

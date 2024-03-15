@@ -18,4 +18,5 @@ public interface TransactionBO extends SuperBO {
 
     String generateTransactionID();
 
+    List<TransactionDto> getAllOverDueBooks();
 }
