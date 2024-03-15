@@ -1,12 +1,11 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +21,7 @@ public class Books {
     private String branchName;
     private String availability;
     private String qty;
+
+    @OneToMany(mappedBy = "books")
+    private List<Transaction> transactions;
 }

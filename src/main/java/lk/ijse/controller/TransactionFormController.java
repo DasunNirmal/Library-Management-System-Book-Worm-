@@ -6,9 +6,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class TransactionFormController {
-
 
     @FXML
     private TableColumn<?, ?> colBook;
@@ -20,16 +20,10 @@ public class TransactionFormController {
     private TableColumn<?, ?> colGenre;
 
     @FXML
-    private TableColumn<?, ?> colMemberID;
-
-    @FXML
     private TableColumn<?, ?> colMember;
 
     @FXML
-    private TableColumn<?, ?> colQty;
-
-    @FXML
-    private TableColumn<?, ?> colRemove;
+    private TableColumn<?, ?> colMemberID;
 
     @FXML
     private TableColumn<?, ?> colReturnDate;
@@ -56,7 +50,7 @@ public class TransactionFormController {
     private Label lblMemberName;
 
     @FXML
-    private TextField txtQty;
+    private Label lblBookID;
 
     @FXML
     private TextField txtSearchBooks;
@@ -65,9 +59,7 @@ public class TransactionFormController {
     private TextField txtSearchMembers;
 
     @FXML
-    void btnAddOnAction(ActionEvent event) {
-
-    }
+    private TextField txtSearchTransaction;
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -76,6 +68,11 @@ public class TransactionFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnReturnOnAction(ActionEvent event) {
 
     }
 
@@ -100,7 +97,7 @@ public class TransactionFormController {
     }
 
     @FXML
-    void txtGotoBtnAddOnAction(ActionEvent event) {
+    void txtSearchTransactionOnAction(KeyEvent event) {
 
     }
 }

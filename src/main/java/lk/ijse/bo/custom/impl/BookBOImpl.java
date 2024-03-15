@@ -5,6 +5,7 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.entity.Books;
+import lk.ijse.entity.Transaction;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,14 +19,16 @@ public class BookBOImpl implements BooksBO {
     public boolean saveBooks(BooksDto dto) throws SQLException {
         return booksDAO.save(new Books(
                 dto.getBookID(),
-                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(), dto.getAvailability(), dto.getQty()));
+                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(),
+                dto.getAvailability(), dto.getQty(), new ArrayList<Transaction>()));
     }
 
     @Override
     public boolean updateBooks(BooksDto dto) throws SQLException, ClassNotFoundException {
         return booksDAO.update(new Books(
                 dto.getBookID(),
-                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(), dto.getAvailability(), dto.getQty()));
+                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(),
+                dto.getAvailability(), dto.getQty(), new ArrayList<Transaction>()));
     }
 
     @Override
@@ -45,7 +48,8 @@ public class BookBOImpl implements BooksBO {
         for (Books book : list) {
             books.add(new BooksDto(
                     book.getBookID(),
-                    book.getTitle(), book.getGenre(), book.getAuthor(), book.getBranchID(), book.getBranchName(), book.getAvailability(), book.getQty()));
+                    book.getTitle(), book.getGenre(), book.getAuthor(), book.getBranchID(), book.getBranchName(),
+                    book.getAvailability(), book.getQty()));
         }
         return books;
     }
