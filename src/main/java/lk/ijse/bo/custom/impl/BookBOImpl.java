@@ -18,14 +18,14 @@ public class BookBOImpl implements BooksBO {
     public boolean saveBooks(BooksDto dto) throws SQLException {
         return booksDAO.save(new Books(
                 dto.getBookID(),
-                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getQty(), dto.getAvailability(), dto.getBranchID()));
+                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(), dto.getAvailability(), dto.getQty()));
     }
 
     @Override
     public boolean updateBooks(BooksDto dto) throws SQLException, ClassNotFoundException {
         return booksDAO.update(new Books(
                 dto.getBookID(),
-                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getQty(), dto.getAvailability(), dto.getBranchID()));
+                dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(), dto.getAvailability(), dto.getQty()));
     }
 
     @Override
@@ -43,8 +43,9 @@ public class BookBOImpl implements BooksBO {
         List<BooksDto> books = new ArrayList<>();
         List<Books> list = booksDAO.getAll();
         for (Books book : list) {
-            books.add(new BooksDto(book.getBookID(),
-                    book.getTitle(), book.getGenre(), book.getAuthor(), book.getQty(), book.getAvailability(), book.getBranchID()));
+            books.add(new BooksDto(
+                    book.getBookID(),
+                    book.getTitle(), book.getGenre(), book.getAuthor(), book.getBranchID(), book.getBranchName(), book.getAvailability(), book.getQty()));
         }
         return books;
     }
