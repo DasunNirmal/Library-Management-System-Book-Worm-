@@ -96,6 +96,26 @@ public class TransactionFormController {
         autoCompleteBooks();
         loadAllTransactions();
         setCellValueFactory();
+        tableListener();
+    }
+
+    private void tableListener() {
+        tblTransaction.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(TransactionTm row) {
+        if (row != null) {
+            lblBorrowingID.setText(row.getBorrowingID());
+            lblMemberID.setText(row.getMemberID());
+            lblMemberName.setText(row.getMemberName());
+            lblBookName.setText(row.getBook());
+            lblGenre.setText(row.getGenre());
+            lblDate.setText(row.getBorrowingDate());
+            dpReturningDate.setValue(LocalDate.parse(row.getReturningDate()));
+            lblBookID.setText(row.getBookID());
+        }
     }
 
     private void setCellValueFactory() {
