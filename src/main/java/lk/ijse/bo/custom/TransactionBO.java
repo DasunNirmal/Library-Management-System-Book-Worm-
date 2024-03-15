@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom;
 
 import lk.ijse.bo.SuperBO;
+import lk.ijse.dto.OverdueDto;
 import lk.ijse.dto.TransactionDto;
 
 import java.sql.SQLException;
@@ -17,7 +18,5 @@ public interface TransactionBO extends SuperBO {
     List<TransactionDto> getAllTransaction() throws SQLException, ClassNotFoundException;
 
     String generateTransactionID();
-
-    List<TransactionDto> getAllOverDueBooks();
 
 }

@@ -2,11 +2,13 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.TransactionDAO;
+import lk.ijse.dto.OverdueDto;
 import lk.ijse.entity.Transactions;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -85,10 +87,14 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public List<Transactions> getAllOverDueBooks() {
+    public List<OverdueDto> getAllOverDueBooks() {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
-        List<Transactions> list = session.createNativeQuery("SELECT * FROM Transactions WHERE returningDate < CURRENT_DATE", Transactions.class).list();
+        List<OverdueDto> list = session.createNativeQuery(
+                        "SELECT borrowingID, memberID, memberName, book, genre, borrowingDate, returningDate, book_id " +
+                                "FROM Transactions WHERE returningDate < CURRENT_DATE", OverdueDto.class)
+                .list();
+
         transaction.commit();
         session.close();
         return list;
@@ -99,7 +105,23 @@ public class TransactionDAOImpl implements TransactionDAO {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query<Long> query = session.createQuery("SELECT count(*) FROM Transactions ", Long.class);
+        Query<Integer> query = session.createNativeQuery("SELECT COUNT(*) FROM Transactions WHERE returningDate < CURRENT_DATE()",Integer.class);
+        Integer count = (Integer) query.getSingleResult();
+        String overdueCount = String.valueOf(count);
+
+        transaction.commit();
+        session.close();
+
+        return overdueCount;
+    }
+
+
+    @Override
+    public String getTotalBorrowedBooks() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Long> query = session.createQuery("SELECT count(*) FROM Transactions", Long.class);
         Long count = query.uniqueResult();
         String overdueCount = String.valueOf(count);
 

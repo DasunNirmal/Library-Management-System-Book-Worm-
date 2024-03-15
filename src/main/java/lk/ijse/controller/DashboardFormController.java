@@ -14,7 +14,9 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dao.custom.MembersDAO;
 import lk.ijse.dao.custom.TransactionDAO;
+import lk.ijse.dto.OverdueDto;
 import lk.ijse.dto.TransactionDto;
+import lk.ijse.dto.tm.OverdueTm;
 import lk.ijse.dto.tm.TransactionTm;
 
 import java.sql.SQLException;
@@ -62,7 +64,7 @@ public class DashboardFormController {
     private TableView<TransactionTm> tblBorrowedList;
 
     @FXML
-    private TableView<TransactionTm> tblOverdueList;
+    private TableView<OverdueTm> tblOverdueList;
 
     private ObservableList<TransactionTm> obList = FXCollections.observableArrayList();
 
@@ -101,7 +103,7 @@ public class DashboardFormController {
     }
 
     private void borrowedBooks() {
-        String borrowed = transactionDAO.getTotalOverdueBooks();
+        String borrowed = transactionDAO.getTotalBorrowedBooks();
         lblBorrowedBooks.setText(borrowed);
     }
 
@@ -126,23 +128,27 @@ public class DashboardFormController {
         colMemberID.setCellValueFactory(new PropertyValueFactory<>("memberID"));
         colMember.setCellValueFactory(new PropertyValueFactory<>("memberName"));
         colBookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
-        colBookName.setCellValueFactory(new PropertyValueFactory<>("book"));
+        colBookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+
         tblOverdueList.setId("my-table");
 
         colTID.setCellValueFactory(new PropertyValueFactory<>("borrowingID"));
         colBMemberID.setCellValueFactory(new PropertyValueFactory<>("memberID"));
         colBMember.setCellValueFactory(new PropertyValueFactory<>("memberName"));
         colBBook.setCellValueFactory(new PropertyValueFactory<>("book"));
+
         tblBorrowedList.setId("my-table");
     }
 
+
     private void loadAllOverdueBooks() {
+        ObservableList<OverdueTm> obList = FXCollections.observableArrayList();
         obList.clear();
-        List<TransactionDto> dtoList = transactionBO.getAllOverDueBooks();
-        for (TransactionDto dto : dtoList) {
-            obList.add(new TransactionTm(
-                    dto.getBorrowingID(), dto.getMemberID(), dto.getMemberName(), dto.getBook(),
-                    dto.getGenre(), dto.getBorrowingDate(), dto.getReturningDate(), dto.getBooks().getBookID()));
+        List<OverdueDto> dtoList = transactionDAO.getAllOverDueBooks();
+        for (OverdueDto dto : dtoList) {
+            obList.add(new OverdueTm(
+                    dto.getBorrowingID(), dto.getMemberID(), dto.getMemberName(), dto.getBookName(), dto.getGenre(),
+                    dto.getBDate(), dto.getReturningDate(), dto.getBookID()));
         }
         tblOverdueList.setItems(obList);
     }
