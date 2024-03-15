@@ -31,7 +31,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSearchBooks" alignment="CENTER" layoutX="707.0" layoutY="97.0" onAction="#txtGoToDtatePicker" prefHeight="24.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtSearchBooks" alignment="CENTER" layoutX="707.0" layoutY="97.0" onAction="#txtGoToDatePicker" prefHeight="24.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -110,9 +110,9 @@
       <TableView layoutX="34.0" layoutY="388.0" prefHeight="308.0" prefWidth="972.0">
         <columns>
           <TableColumn fx:id="colMemberID" prefWidth="91.0" text="Member ID" />
-          <TableColumn fx:id="colMmber" prefWidth="163.0" text="Member" />
+          <TableColumn fx:id="colMember" prefWidth="163.0" text="Member" />
             <TableColumn fx:id="colBook" prefWidth="164.0" text="Book" />
-            <TableColumn fx:id="colGebre" prefWidth="142.0" text="Genre" />
+            <TableColumn fx:id="colGenre" prefWidth="142.0" text="Genre" />
             <TableColumn fx:id="colBorrowingDate" prefWidth="124.0" text="Borrowed Date" />
             <TableColumn fx:id="colReturnDate" prefWidth="112.0" text="Return Date" />
             <TableColumn fx:id="colQty" text="Quantity" />
