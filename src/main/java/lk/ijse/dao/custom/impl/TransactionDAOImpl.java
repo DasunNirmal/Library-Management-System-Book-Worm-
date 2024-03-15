@@ -2,8 +2,10 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.TransactionDAO;
-import lk.ijse.entity.Transaction;
+import lk.ijse.entity.Books;
+import lk.ijse.entity.Transactions;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
@@ -11,9 +13,9 @@ import java.util.List;
 
 public class TransactionDAOImpl implements TransactionDAO {
     @Override
-    public boolean save(Transaction dto) throws SQLException {
+    public boolean save(Transactions dto) throws SQLException {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
-        org.hibernate.Transaction transaction = session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
 
         session.persist(dto);
         transaction.commit();
@@ -22,7 +24,7 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public boolean update(Transaction dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Transactions dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
@@ -32,21 +34,26 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public Transaction search(String id) throws SQLException, ClassNotFoundException {
+    public Transactions search(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public List<Transaction> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+    public List<Transactions> getAll() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Transactions> list = session.createNativeQuery("SELECT * FROM Transactions", Transactions.class).list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 
     @Override
     public String generateNextID() {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
-        org.hibernate.Transaction transaction = session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
 
-        Query<String> query = session.createQuery("SELECT id FROM Transaction ORDER BY id DESC LIMIT 1", String.class);
+        Query<String> query = session.createQuery("SELECT id FROM Transactions ORDER BY id DESC LIMIT 1", String.class);
         query.setMaxResults(1);
         String currentTransactionID = query.uniqueResult();
 

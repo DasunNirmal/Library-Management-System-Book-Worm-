@@ -5,7 +5,7 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.entity.Books;
-import lk.ijse.entity.Transaction;
+import lk.ijse.entity.Transactions;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class BookBOImpl implements BooksBO {
         return booksDAO.save(new Books(
                 dto.getBookID(),
                 dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(),
-                dto.getAvailability(), dto.getQty(), new ArrayList<Transaction>()));
+                dto.getAvailability(), dto.getQty(), new ArrayList<Transactions>()));
     }
 
     @Override
@@ -28,7 +28,7 @@ public class BookBOImpl implements BooksBO {
         return booksDAO.update(new Books(
                 dto.getBookID(),
                 dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(),
-                dto.getAvailability(), dto.getQty(), new ArrayList<Transaction>()));
+                dto.getAvailability(), dto.getQty(), new ArrayList<Transactions>()));
     }
 
     @Override

@@ -23,5 +23,5 @@ public class Books {
     private String qty;
 
     @OneToMany(mappedBy = "books")
-    private List<Transaction> transactions;
+    private List<Transactions> transactions;
 }

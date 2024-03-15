@@ -1,8 +1,11 @@
 package lk.ijse.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BooksBO;
@@ -11,11 +14,14 @@ import lk.ijse.bo.custom.TransactionBO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.MemberDto;
 import lk.ijse.dto.TransactionDto;
+import lk.ijse.dto.tm.BooksTm;
+import lk.ijse.dto.tm.TransactionTm;
 import lk.ijse.entity.Books;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class TransactionFormController {
 
@@ -36,6 +42,9 @@ public class TransactionFormController {
 
     @FXML
     private TableColumn<?, ?> colReturnDate;
+
+    @FXML
+    private TableView<TransactionTm> tblTransaction;
 
     @FXML
     private DatePicker dpReturningDate;
@@ -70,6 +79,8 @@ public class TransactionFormController {
     @FXML
     private TextField txtSearchTransaction;
 
+    private ObservableList<TransactionTm> obList = FXCollections.observableArrayList();
+
     TransactionBO transactionBO = (TransactionBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.TRANSACTION);
 
     MembersBO membersBO = (MembersBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.MEMBERS);
@@ -83,6 +94,35 @@ public class TransactionFormController {
         generateNextID();
         autoCompleteMembers();
         autoCompleteBooks();
+        loadAllTransactions();
+        setCellValueFactory();
+    }
+
+    private void setCellValueFactory() {
+        colMemberID.setCellValueFactory(new PropertyValueFactory<>("memberID"));
+        colMember.setCellValueFactory(new PropertyValueFactory<>("memberName"));
+        colBook.setCellValueFactory(new PropertyValueFactory<>("book"));
+        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        colBorrowingDate.setCellValueFactory(new PropertyValueFactory<>("borrowingDate"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returningDate"));
+        tblTransaction.setId("my-table");
+    }
+
+    private void loadAllTransactions() {
+        try {
+            obList.clear();
+            List<TransactionDto> dtoList = transactionBO.getAllTransaction();
+            for (TransactionDto dto : dtoList) {
+                obList.add(new TransactionTm(
+                        dto.getBorrowingID(), dto.getMemberID(), dto.getMemberName(), dto.getBook(),
+                        dto.getGenre(), dto.getBorrowingDate(), dto.getReturningDate(), dto.getBooks().getBookID()));
+            }
+            tblTransaction.setItems(obList);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -104,6 +144,8 @@ public class TransactionFormController {
                 boolean isUpdated = booksBO.updateQty(bookID);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION,"Successful").show();
+                    loadAllTransactions();
+                    generateNextID();
                 }
             } else {
                 new Alert(Alert.AlertType.ERROR,"Not Saved").show();

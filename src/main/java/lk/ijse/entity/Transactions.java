@@ -8,13 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-public class Transaction {
+public class Transactions {
     @Id
     private String borrowingID;
     private String memberID;
