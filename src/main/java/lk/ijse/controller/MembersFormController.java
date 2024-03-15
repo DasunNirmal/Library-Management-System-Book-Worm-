@@ -151,6 +151,7 @@ public class MembersFormController {
                 clearFields();
                 LoadAllMembers();
                 generateNextID();
+                totalMembers();
                 new Alert(Alert.AlertType.INFORMATION,"Member Saved").show();
             }
         } catch (SQLException e) {
@@ -173,6 +174,7 @@ public class MembersFormController {
                 LoadAllMembers();
                 clearFields();
                 generateNextID();
+                totalMembers();
                 new Alert(Alert.AlertType.INFORMATION,"Member Updated").show();
             }
         } catch (SQLException e) {
@@ -196,6 +198,7 @@ public class MembersFormController {
                 LoadAllMembers();
                 clearFields();
                 generateNextID();
+                totalMembers();
                 new Alert(Alert.AlertType.INFORMATION,"Member Deleted").show();
             }
         } catch (SQLException e) {

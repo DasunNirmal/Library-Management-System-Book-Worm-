@@ -212,6 +212,7 @@ public class BooksFormController {
                 generateNextID();
                 checkForQuantity();
                 loadAllBooks();
+                totalBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book is Added").show();
             }
         } catch (SQLException e) {
@@ -238,6 +239,7 @@ public class BooksFormController {
                 generateNextID();
                 checkForQuantity();
                 loadAllBooks();
+                totalBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book Deleted").show();
             }
         } catch (SQLException e) {
@@ -270,6 +272,7 @@ public class BooksFormController {
                 loadAllBooks();
                 checkForQuantity();
                 generateNextID();
+                totalBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book Is Updated").show();
             }
         } catch (SQLException e) {

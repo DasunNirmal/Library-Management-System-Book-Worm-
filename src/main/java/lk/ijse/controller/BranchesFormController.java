@@ -148,6 +148,7 @@ public class BranchesFormController {
             if (isSaved) {
                 clearFields();
                 generateNextID();
+                totalBranches();
                 new Alert(Alert.AlertType.INFORMATION,"Branch Added Successfully").show();
             }
         } catch (SQLException e) {
@@ -169,6 +170,7 @@ public class BranchesFormController {
                 loadAllBranches();
                 clearFields();
                 generateNextID();
+                totalBranches();
                 new Alert(Alert.AlertType.INFORMATION,"Branch is Deleted").show();
             }
         } catch (SQLException e) {
@@ -192,6 +194,7 @@ public class BranchesFormController {
                 loadAllBranches();
                 clearFields();
                 generateNextID();
+                totalBranches();
                 new Alert(Alert.AlertType.INFORMATION,"Branches Updated").show();
             }
         } catch (SQLException e) {
