@@ -283,9 +283,9 @@ public class BooksFormController {
     }
 
     private void searchTableFilter() {
-        FilteredList<BooksTm> filteredBooList = new FilteredList<>(obList, b -> true);
+        FilteredList<BooksTm> filteredBookList = new FilteredList<>(obList, b -> true);
         txtSearchBooks.textProperty().addListener((observable,oldValue,newValue) -> {
-            filteredBooList.setPredicate(booksTm -> {
+            filteredBookList.setPredicate(booksTm -> {
                 if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
                     return true;
                 }
@@ -328,7 +328,7 @@ public class BooksFormController {
                 }
             });
         });
-        SortedList<BooksTm> sortedList = new SortedList<>(filteredBooList);
+        SortedList<BooksTm> sortedList = new SortedList<>(filteredBookList);
         sortedList.comparatorProperty().bind(tblBooks.comparatorProperty());
         tblBooks.setItems(sortedList);
     }
