@@ -10,6 +10,8 @@ import lk.ijse.bo.custom.MembersBO;
 import lk.ijse.bo.custom.TransactionBO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.MemberDto;
+import lk.ijse.dto.TransactionDto;
+import lk.ijse.entity.Books;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.sql.SQLException;
@@ -74,6 +76,8 @@ public class TransactionFormController {
 
     BooksBO booksBO = (BooksBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.BOOKS);
 
+    Books books = new Books();
+
     public void initialize() {
         lblDate.setText(String.valueOf(LocalDate.now()));
         generateNextID();
@@ -81,21 +85,32 @@ public class TransactionFormController {
         autoCompleteBooks();
     }
 
-    private void autoCompleteBooks() {
-        String[] id = booksBO.searchBooksID(txtSearchBooks.getText());
-        TextFields.bindAutoCompletion(txtSearchBooks, id);
-        String[] name = booksBO.searchBooksName(txtSearchBooks.getText());
-        TextFields.bindAutoCompletion(txtSearchBooks, name);
-    }
+    @FXML
+    void btnSaveOnAction(ActionEvent event) {
+        String borrowingID = lblBorrowingID.getText();
+        String memberID = lblMemberID.getText();
+        String memberName = lblMemberName.getText();
+        String bookName = lblBookName.getText();
+        String genre = lblGenre.getText();
+        String bDate = lblDate.getText();
+        String retuningDate = String.valueOf(dpReturningDate.getValue());
+        String bookID = lblBookID.getText();
+        books.setBookID(bookID);
 
-    private void autoCompleteMembers() {
-        String[] id = membersBO.searchMemberPhoneNumber(txtSearchMembers.getText());
-        TextFields.bindAutoCompletion(txtSearchMembers, id);
-    }
-
-    private void generateNextID() {
-        String transactionID = transactionBO.generateTransactionID();
-        lblBorrowingID.setText(transactionID);
+        try {
+            boolean isSaved = transactionBO.saveTransaction(
+                    new TransactionDto(borrowingID,memberID,memberName,bookName,genre,bDate,retuningDate,books));
+            if (isSaved) {
+                boolean isUpdated = booksBO.updateQty(bookID);
+                if (isUpdated) {
+                    new Alert(Alert.AlertType.CONFIRMATION,"Successful").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR,"Not Saved").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     @FXML
@@ -110,11 +125,6 @@ public class TransactionFormController {
 
     @FXML
     void btnReturnOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSaveOnAction(ActionEvent event) {
 
     }
 
@@ -169,5 +179,22 @@ public class TransactionFormController {
     @FXML
     void txtSearchTransactionOnAction(KeyEvent event) {
 
+    }
+
+    private void autoCompleteBooks() {
+        String[] id = booksBO.searchBooksID(txtSearchBooks.getText());
+        TextFields.bindAutoCompletion(txtSearchBooks, id);
+        String[] name = booksBO.searchBooksName(txtSearchBooks.getText());
+        TextFields.bindAutoCompletion(txtSearchBooks, name);
+    }
+
+    private void autoCompleteMembers() {
+        String[] id = membersBO.searchMemberPhoneNumber(txtSearchMembers.getText());
+        TextFields.bindAutoCompletion(txtSearchMembers, id);
+    }
+
+    private void generateNextID() {
+        String transactionID = transactionBO.generateTransactionID();
+        lblBorrowingID.setText(transactionID);
     }
 }

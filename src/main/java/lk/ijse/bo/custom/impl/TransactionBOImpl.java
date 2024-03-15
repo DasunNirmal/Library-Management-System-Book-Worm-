@@ -4,6 +4,7 @@ import lk.ijse.bo.custom.TransactionBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.TransactionDAO;
 import lk.ijse.dto.TransactionDto;
+import lk.ijse.entity.Transaction;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,7 +15,9 @@ public class TransactionBOImpl implements TransactionBO {
 
     @Override
     public boolean saveTransaction(TransactionDto dto) throws SQLException {
-        return false;
+        return transactionDAO.save(new Transaction(dto.getBorrowingID(),dto.getMemberID(),dto.getMemberName(),
+                dto.getBook(),dto.getGenre(),
+                dto.getBorrowingDate(),dto.getReturningDate(),dto.getBooks()));
     }
 
     @Override

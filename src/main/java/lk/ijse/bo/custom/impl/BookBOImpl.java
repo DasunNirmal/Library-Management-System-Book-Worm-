@@ -4,9 +4,7 @@ import lk.ijse.bo.custom.BooksBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dto.BooksDto;
-import lk.ijse.dto.BranchesDto;
 import lk.ijse.entity.Books;
-import lk.ijse.entity.Branches;
 import lk.ijse.entity.Transaction;
 
 import java.sql.SQLException;
@@ -88,5 +86,10 @@ public class BookBOImpl implements BooksBO {
     @Override
     public String[] searchBooksName(String name) {
         return booksDAO.getBookByName(name);
+    }
+
+    @Override
+    public boolean updateQty(String bookID) {
+        return booksDAO.updateBookQty(bookID);
     }
 }

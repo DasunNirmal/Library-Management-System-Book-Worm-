@@ -3,7 +3,6 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.entity.Books;
-import lk.ijse.entity.Branches;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -151,5 +150,16 @@ public class BooksDAOImpl implements BooksDAO {
         session.close();
 
         return branches.toArray(new String[0]);
+    }
+
+    @Override
+    public boolean updateBookQty(String bookID) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.createNativeQuery("UPDATE Books SET qty = qty - 1  WHERE bookID = '"+bookID+"'", Books.class).executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
     }
 }

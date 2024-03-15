@@ -12,7 +12,13 @@ import java.util.List;
 public class TransactionDAOImpl implements TransactionDAO {
     @Override
     public boolean save(Transaction dto) throws SQLException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        org.hibernate.Transaction transaction = session.beginTransaction();
+
+        session.persist(dto);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
