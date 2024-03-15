@@ -100,6 +100,6 @@ public class RegistrationFormController {
 
     @FXML
     void txtGoToPasswordOnAction(ActionEvent event) {
-        btnRegisterOnAction(new ActionEvent());
+        txtPasswordField.requestFocus();
     }
 }
