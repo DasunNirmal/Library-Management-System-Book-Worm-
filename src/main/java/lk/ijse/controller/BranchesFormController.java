@@ -58,15 +58,26 @@ public class BranchesFormController {
     @FXML
     private TextField txtStaff;
 
+    @FXML
+    private Label lblTotal;
+
     private ObservableList<BranchesTm> obList = FXCollections.observableArrayList();
 
     BranchBO branchBO = (BranchBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.BRANCHES);
+
+    BranchDAO branchDAO = (BranchDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BRANCHES);
 
     public void initialize() {
         generateNextID();
         loadAllBranches();
         setCellValueFactory();
         tableListener();
+        totalBranches();
+    }
+
+    private void totalBranches() {
+        String branches = branchDAO.getTotalBranches();
+        lblTotal.setText(branches);
     }
 
     private void clearFields() {

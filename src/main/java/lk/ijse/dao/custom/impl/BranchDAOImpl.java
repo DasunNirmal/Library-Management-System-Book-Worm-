@@ -118,4 +118,19 @@ public class BranchDAOImpl implements BranchDAO {
 
         return branches.toArray(new String[0]);
     }
+
+    @Override
+    public String getTotalBranches() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Long> query = session.createQuery("SELECT count(*) FROM Branches", Long.class);
+        Long count = query.uniqueResult();
+        String totalCount = String.valueOf(count);
+
+        transaction.commit();
+        session.close();
+
+        return totalCount;
+    }
 }

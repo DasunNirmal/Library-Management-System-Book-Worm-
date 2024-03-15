@@ -5,4 +5,6 @@ import lk.ijse.entity.Branches;
 
 public interface BranchDAO extends CrudDAO<Branches> {
     String[] searchID(String id);
+
+    String getTotalBranches();
 }
