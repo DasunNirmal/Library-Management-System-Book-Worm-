@@ -35,6 +35,9 @@ public class BooksFormController {
     private TableColumn<?, ?> colBranch;
 
     @FXML
+    private TableColumn<?, ?> colBranchID;
+
+    @FXML
     private TableColumn<?, ?> colGenre;
 
     @FXML
@@ -60,6 +63,9 @@ public class BooksFormController {
 
     @FXML
     private ToggleGroup tgAvailability;
+
+    @FXML
+    private Label lblBranchID;
 
     @FXML
     private TextField txtAuthor;
@@ -118,7 +124,7 @@ public class BooksFormController {
             txtGenre.setText(row.getGenre());
             txtAuthor.setText(row.getAuthor());
             txtBookQty.setText(row.getQty());
-            lblBranchName.setText(row.getBranchID());
+            lblBranchName.setText(row.getBranchName());
             if (row.getAvailability().startsWith("Yes") || row.getAvailability().startsWith("yes")) {
                 rbYes.setSelected(true);
                 rbNo.setSelected(false);
@@ -134,7 +140,8 @@ public class BooksFormController {
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
-        colBranch.setCellValueFactory(new PropertyValueFactory<>("branchID"));
+        colBranchID.setCellValueFactory(new PropertyValueFactory<>("branchID"));
+        colBranch.setCellValueFactory(new PropertyValueFactory<>("branchName"));
         colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         tblBooks.setId("my-table");
@@ -148,7 +155,7 @@ public class BooksFormController {
                 obList.add(new BooksTm(
                         dto.getBookID(),
                         dto.getTitle(),
-                        dto.getGenre(), dto.getAuthor(), dto.getQty(), dto.getAvailability(), dto.getBranchID()));
+                        dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(), dto.getAvailability(), dto.getQty()));
             }
             tblBooks.setItems(obList);
         } catch (SQLException e) {
@@ -169,6 +176,7 @@ public class BooksFormController {
         String title = txtTitle.getText();
         String genre = txtGenre.getText();
         String author = txtAuthor.getText();
+        String branchID = lblBranchID.getText();
         String qty = txtBookQty.getText();
         String branchName = lblBranchName.getText();
         String available = null;
@@ -179,7 +187,7 @@ public class BooksFormController {
         }
 
         try {
-            boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,qty,available,branchName));
+            boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
             if (isSaved) {
                 clearFields();
                 generateNextID();
@@ -224,6 +232,7 @@ public class BooksFormController {
         String title = txtTitle.getText();
         String genre = txtGenre.getText();
         String author = txtAuthor.getText();
+        String branchID = lblBranchID.getText();
         String qty = txtBookQty.getText();
         String branchName = lblBranchName.getText();
         String available = null;
@@ -234,7 +243,7 @@ public class BooksFormController {
         }
 
         try {
-            boolean isUpdated = booksBO.updateBooks(new BooksDto(id,title,genre,author,qty,available,branchName));
+            boolean isUpdated = booksBO.updateBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
             if (isUpdated) {
                 clearFields();
                 loadAllBooks();
@@ -256,6 +265,7 @@ public class BooksFormController {
             branchesDto = branchBO.searchBranch(searchInput);
             if (branchesDto != null) {
                 txtSearchBranch.setText("");
+                lblBranchID.setText(branchesDto.getId());
                 lblBranchName.setText(branchesDto.getBranchName());
             } else {
                 new Alert(Alert.AlertType.ERROR,"Branch Doesn't Exist").show();
@@ -300,6 +310,10 @@ public class BooksFormController {
                 } else if (booksTm.getBranchID().toLowerCase().contains(search)) {
                     return true;
                 } else if (booksTm.getBranchID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getBranchName().toLowerCase().contains(search)) {
+                    return true;
+                } else if (booksTm.getBranchName().toLowerCase().contains(search)) {
                     return true;
                 } else if (booksTm.getAvailability().toLowerCase().contains(search)) {
                     return true;
