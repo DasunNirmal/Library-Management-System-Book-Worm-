@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.TransactionBO;
 
 public class TransactionFormController {
 
@@ -60,6 +62,17 @@ public class TransactionFormController {
 
     @FXML
     private TextField txtSearchTransaction;
+
+    TransactionBO transactionBO = (TransactionBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.TRANSACTION);
+
+    public void initialize() {
+        generateNextID();
+    }
+
+    private void generateNextID() {
+        String transactionID = transactionBO.generateTransactionID();
+        lblBorrowingID.setText(transactionID);
+    }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {

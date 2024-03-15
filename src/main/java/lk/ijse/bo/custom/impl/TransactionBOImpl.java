@@ -1,12 +1,17 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.TransactionBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.TransactionDAO;
 import lk.ijse.dto.TransactionDto;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class TransactionBOImpl implements TransactionBO {
+
+    TransactionDAO transactionDAO = (TransactionDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.TRANSACTION);
+
     @Override
     public boolean saveTransaction(TransactionDto dto) throws SQLException {
         return false;
@@ -34,6 +39,6 @@ public class TransactionBOImpl implements TransactionBO {
 
     @Override
     public String generateTransactionID() {
-        return null;
+        return transactionDAO.generateNextID();
     }
 }
