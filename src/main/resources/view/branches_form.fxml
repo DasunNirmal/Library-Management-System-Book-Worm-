@@ -12,35 +12,35 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="714.0" prefWidth="919.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchesFormController">
+<AnchorPane prefHeight="714.0" prefWidth="1029.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchesFormController">
    <children>
       <Label layoutX="34.0" layoutY="6.0" text="Branches" textFill="#273c73">
          <font>
             <Font name="Dyuthi Regular" size="32.0" />
          </font>
       </Label>
-      <Line endX="586.0" layoutX="333.0" layoutY="60.0" startX="-333.0" stroke="#fad390" strokeWidth="2.0" />
+      <Line endX="697.5858154296875" layoutX="333.0" layoutY="60.0" startX="-333.0" stroke="#fad390" strokeWidth="2.0" />
       <Label layoutX="54.0" layoutY="93.0" text="Branch ID :" textFill="#273c73">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="364.0" layoutY="93.0" text="Branch Name :" textFill="#273c73">
+      <Label layoutX="382.0" layoutY="93.0" text="Branch Name :" textFill="#273c73">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBranchName" alignment="CENTER" layoutX="354.0" layoutY="119.0" onAction="#txtGoToStaffOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtBranchName" alignment="CENTER" layoutX="372.0" layoutY="119.0" onAction="#txtGoToStaffOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Label layoutX="364.0" layoutY="211.0" text="Address :" textFill="#273c73">
+      <Label layoutX="382.0" layoutY="211.0" text="Address :" textFill="#273c73">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtAddress" alignment="CENTER" layoutX="354.0" layoutY="237.0" onAction="#txtGoToSaveOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtAddress" alignment="CENTER" layoutX="372.0" layoutY="237.0" onAction="#txtGoToSaveOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -55,47 +55,47 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TableView fx:id="tblBranches" layoutX="45.0" layoutY="368.0" prefHeight="333.0" prefWidth="802.0" stylesheets="@../style/tableView.css">
+      <TableView fx:id="tblBranches" layoutX="53.0" layoutY="378.0" prefHeight="323.0" prefWidth="940.0" stylesheets="@../style/tableView.css">
         <columns>
           <TableColumn fx:id="colBranchID" prefWidth="135.0" text="Branch ID" />
-          <TableColumn fx:id="colBranchName" prefWidth="154.0" text="Branch Name" />
-            <TableColumn fx:id="colBranchManager" prefWidth="176.0" text="Branch Manager" />
-            <TableColumn fx:id="colAddress" prefWidth="185.0" text="Adderss" />
-            <TableColumn fx:id="colStaff" prefWidth="146.0" text="Branch Staff" />
+          <TableColumn fx:id="colBranchName" prefWidth="230.0" text="Branch Name" />
+            <TableColumn fx:id="colBranchManager" prefWidth="226.0" text="Branch Manager" />
+            <TableColumn fx:id="colAddress" prefWidth="213.0" text="Adderss" />
+            <TableColumn fx:id="colStaff" prefWidth="135.0" text="Branch Staff" />
         </columns>
       </TableView>
-      <Label layoutX="644.0" layoutY="93.0" text="Branch Staff :" textFill="#273c73">
+      <Label layoutX="734.0" layoutY="93.0" text="Branch Staff :" textFill="#273c73">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtStaff" alignment="CENTER" layoutX="634.0" layoutY="119.0" onAction="#txtGoToManagerOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtStaff" alignment="CENTER" layoutX="724.0" layoutY="119.0" onAction="#txtGoToManagerOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <AnchorPane layoutX="583.0" layoutY="182.0" prefHeight="124.0" prefWidth="267.0" style="-fx-background-color: #809CC557; -fx-background-radius: 20;" />
-      <Label layoutX="657.0" layoutY="199.0" text="Total Branches" textFill="#273c73">
+      <AnchorPane layoutX="703.0" layoutY="182.0" prefHeight="124.0" prefWidth="267.0" style="-fx-background-color: #809CC557; -fx-background-radius: 20;" />
+      <Label layoutX="777.0" layoutY="199.0" text="Total Branches" textFill="#273c73">
          <font>
             <Font name="Dyuthi Regular" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSearchBranches" alignment="CENTER" layoutX="197.0" layoutY="324.0" onKeyPressed="#txtSearchOnAction" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtSearchBranches" alignment="CENTER" layoutX="205.0" layoutY="334.0" onKeyPressed="#txtSearchOnAction" prefHeight="2.0" prefWidth="174.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Label layoutX="56.0" layoutY="329.0" text="Search Branches :" textFill="#273c73">
+      <Label layoutX="64.0" layoutY="339.0" text="Search Branches :" textFill="#273c73">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="54.0" fitWidth="27.0" layoutX="208.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="54.0" fitWidth="27.0" layoutX="216.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/icons8-search-100.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="486.0" layoutY="328.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
+      <JFXButton layoutX="615.0" layoutY="338.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -103,7 +103,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="571.0" layoutY="328.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
+      <JFXButton layoutX="700.0" layoutY="338.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -111,7 +111,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="665.0" layoutY="328.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
+      <JFXButton layoutX="794.0" layoutY="338.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Delete" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -124,7 +124,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXButton layoutX="755.0" layoutY="328.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Clear" textFill="#f8c291">
+      <JFXButton layoutX="884.0" layoutY="338.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Clear" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

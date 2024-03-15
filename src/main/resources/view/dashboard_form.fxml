@@ -10,9 +10,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="714.0" prefWidth="919.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardFormController">
+<AnchorPane prefHeight="714.0" prefWidth="1029.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardFormController">
    <children>
-      <AnchorPane layoutX="37.0" layoutY="96.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #5F97A64D; -fx-background-radius: 15;">
+      <AnchorPane layoutX="37.0" layoutY="116.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #5F97A64D; -fx-background-radius: 15;">
          <children>
             <Label layoutX="89.0" layoutY="27.0" text="Borrowed Books" textFill="#273c73">
                <font>
@@ -30,7 +30,7 @@
             <Font name="Dyuthi Regular" size="32.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="627.0" layoutY="96.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #FAD3904F; -fx-background-radius: 15;">
+      <AnchorPane layoutX="727.0" layoutY="116.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #FAD3904F; -fx-background-radius: 15;">
          <children>
             <Label layoutX="89.0" layoutY="27.0" text="Library Members" textFill="#273c73">
                <font>
@@ -44,7 +44,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="337.0" layoutY="76.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #F6E58DB3; -fx-background-radius: 15;">
+      <AnchorPane layoutX="407.0" layoutY="76.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #F6E58DB3; -fx-background-radius: 15;">
          <children>
             <Label layoutX="89.0" layoutY="27.0" text="Overdue Books" textFill="#273c73">
                <font>
@@ -58,19 +58,19 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TableView layoutX="37.0" layoutY="387.0" prefHeight="323.0" prefWidth="414.0">
+      <TableView layoutX="37.0" layoutY="387.0" prefHeight="323.0" prefWidth="490.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <TableView layoutX="510.0" layoutY="387.0" prefHeight="323.0" prefWidth="373.0">
+      <TableView layoutX="594.0" layoutY="387.0" prefHeight="323.0" prefWidth="395.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Label layoutX="118.0" layoutY="344.0" prefHeight="36.0" prefWidth="186.0" text="Borrowed Book List" textFill="#273c73">
+      <Label layoutX="48.0" layoutY="344.0" prefHeight="36.0" prefWidth="186.0" text="Borrowed Book List" textFill="#273c73">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
@@ -80,12 +80,12 @@
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="305.0" layoutY="350.0" text="see all" textFill="#fc9d44">
+      <Hyperlink layoutX="235.0" layoutY="350.0" text="see all" textFill="#fc9d44">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>
       </Hyperlink>
-      <AnchorPane layoutX="337.0" layoutY="206.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #82A4FF54; -fx-background-radius: 15;">
+      <AnchorPane layoutX="407.0" layoutY="206.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #82A4FF54; -fx-background-radius: 15;">
          <children>
             <Label layoutX="89.0" layoutY="27.0" text="Total Books" textFill="#273c73">
                <font>
@@ -99,6 +99,6 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Line endX="586.0" layoutX="333.0" layoutY="60.0" startX="-333.0" stroke="#fad390" strokeWidth="2.0" />
+      <Line endX="696.0" layoutX="333.0" layoutY="60.0" startX="-333.0" stroke="#fad390" strokeWidth="2.0" />
    </children>
 </AnchorPane>
