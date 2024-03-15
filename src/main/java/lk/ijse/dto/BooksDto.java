@@ -1,7 +1,5 @@
 package lk.ijse.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,7 @@ public class BooksDto {
     private String genre;
     private String author;
     private String branchID;
+    private String branchName;
     private String availability;
     private String qty;
 
