@@ -185,4 +185,19 @@ public class BooksDAOImpl implements BooksDAO {
         transaction.commit();
         session.close();
     }
+
+    @Override
+    public String getTotalBooks() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Long> query = session.createQuery("SELECT count(*) FROM Books", Long.class);
+        Long count = query.uniqueResult();
+        String totalCount = String.valueOf(count);
+
+        transaction.commit();
+        session.close();
+
+        return totalCount;
+    }
 }

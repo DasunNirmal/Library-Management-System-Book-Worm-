@@ -16,4 +16,5 @@ public interface BooksDAO extends CrudDAO<Books> {
 
     void checkAvailability();
 
+    String getTotalBooks();
 }

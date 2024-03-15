@@ -4,11 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.TransactionBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.BooksDAO;
+import lk.ijse.dao.custom.MembersDAO;
 import lk.ijse.dto.TransactionDto;
 import lk.ijse.dto.tm.TransactionTm;
 
@@ -42,19 +46,58 @@ public class DashboardFormController {
     private TableColumn<?, ?> colTID;
 
     @FXML
-    private TableView<TransactionTm> tblOverdueList;
+    private Label lblBorrowedBooks;
+
+    @FXML
+    private Label lblMembers;
+
+    @FXML
+    private Label lblOverdueBooks;
+
+    @FXML
+    private Label lblTotalBooks;
 
     @FXML
     private TableView<TransactionTm> tblBorrowedList;
+
+    @FXML
+    private TableView<TransactionTm> tblOverdueList;
 
     private ObservableList<TransactionTm> obList = FXCollections.observableArrayList();
 
     TransactionBO transactionBO = (TransactionBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.TRANSACTION);
 
+    MembersDAO membersDAO = (MembersDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.MEMBERS);
+
+    BooksDAO booksDAO = (BooksDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOKS);
+
+
     public void initialize() {
         loadAllOverdueBooks();
         loadAllBorrowedBooks();
         setCellValueFactory();
+        borrowedBooks();
+        overdueBooks();
+        totalMembers();
+        totalBooks();
+    }
+
+    private void totalBooks() {
+        String books = booksDAO.getTotalBooks();
+        lblTotalBooks.setText(books);
+    }
+
+    private void totalMembers() {
+        String members = membersDAO.getTotalMembers();
+        lblMembers.setText(members);
+    }
+
+    private void overdueBooks() {
+
+    }
+
+    private void borrowedBooks() {
+
     }
 
     private void loadAllBorrowedBooks() {
