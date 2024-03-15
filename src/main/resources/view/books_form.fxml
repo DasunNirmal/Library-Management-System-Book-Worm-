@@ -95,7 +95,7 @@
          </font>
       </TextField>
       <AnchorPane layoutX="778.0" layoutY="132.0" prefHeight="124.0" prefWidth="216.0" style="-fx-background-color: #809CC557; -fx-background-radius: 20;" />
-      <Label layoutX="840.0" layoutY="158.0" text="Total Books" textFill="#273c73">
+      <Label layoutX="839.0" layoutY="155.0" text="Total Books" textFill="#273c73">
          <font>
             <Font name="Dyuthi Regular" size="22.0" />
          </font>
@@ -188,6 +188,11 @@
       <Label fx:id="lblBranchID" layoutX="581.0" layoutY="262.0" prefHeight="36.0" prefWidth="152.0" textFill="#273c73">
          <font>
             <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalBooks" layoutX="839.0" layoutY="196.0" prefHeight="38.0" prefWidth="107.0" textFill="#273c73">
+         <font>
+            <Font name="Dyuthi Regular" size="17.0" />
          </font>
       </Label>
    </children>

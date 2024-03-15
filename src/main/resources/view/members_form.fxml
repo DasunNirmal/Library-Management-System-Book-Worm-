@@ -132,5 +132,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <Label fx:id="lblTotalMembers" layoutX="756.0" layoutY="249.0" prefHeight="38.0" prefWidth="137.0" textFill="#273c73">
+         <font>
+            <Font name="Dyuthi Regular" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

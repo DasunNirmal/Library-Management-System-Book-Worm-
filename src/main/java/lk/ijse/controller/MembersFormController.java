@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.MembersBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.MembersDAO;
 import lk.ijse.dto.MemberDto;
 import lk.ijse.dto.tm.MemberTm;
 
@@ -56,15 +58,26 @@ public class MembersFormController {
     @FXML
     private TextField txtPhoneNumber;
 
+    @FXML
+    private Label lblTotalMembers;
+
     private ObservableList<MemberTm> obList = FXCollections.observableArrayList();
 
     MembersBO membersBO = (MembersBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.MEMBERS);
+
+    MembersDAO membersDAO = (MembersDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.MEMBERS);
 
     public void initialize() {
         generateNextID();
         LoadAllMembers();
         setCellValueFactory();
         tableListener();
+        totalMembers();
+    }
+
+    private void totalMembers() {
+        String total = membersDAO.getTotalMembers();
+        lblTotalMembers.setText(total);
     }
 
     private void clearFields() {

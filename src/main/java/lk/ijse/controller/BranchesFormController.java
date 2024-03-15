@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BranchBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.BranchDAO;
 import lk.ijse.dto.BranchesDto;
 import lk.ijse.dto.tm.BranchesTm;
 import lk.ijse.dto.tm.MemberTm;

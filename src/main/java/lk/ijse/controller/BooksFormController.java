@@ -12,6 +12,8 @@ import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BooksBO;
 import lk.ijse.bo.custom.BranchBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.BranchesDto;
 import lk.ijse.dto.tm.BooksTm;
@@ -85,9 +87,14 @@ public class BooksFormController {
     @FXML
     private TextField txtTitle;
 
+    @FXML
+    private Label lblTotalBooks;
+
     private ObservableList<BooksTm> obList = FXCollections.observableArrayList();
 
     BranchBO branchBO = (BranchBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.BRANCHES);
+
+    BooksDAO booksDAO = (BooksDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOKS);
 
     BooksBO booksBO = (BooksBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.BOOKS);
 
@@ -98,6 +105,12 @@ public class BooksFormController {
         tableListener();
         autoComplete();
         checkForQuantity();
+        totalBooks();
+    }
+
+    private void totalBooks() {
+        String books = booksDAO.getTotalBooks();
+        lblTotalBooks.setText(books);
     }
 
     private void checkForQuantity() {
