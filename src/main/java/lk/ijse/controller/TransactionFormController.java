@@ -2,6 +2,8 @@ package lk.ijse.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,7 +16,6 @@ import lk.ijse.bo.custom.TransactionBO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.MemberDto;
 import lk.ijse.dto.TransactionDto;
-import lk.ijse.dto.tm.BooksTm;
 import lk.ijse.dto.tm.TransactionTm;
 import lk.ijse.entity.Books;
 import org.controlsfx.control.textfield.TextFields;
@@ -257,7 +258,58 @@ public class TransactionFormController {
 
     @FXML
     void txtSearchTransactionOnAction(KeyEvent event) {
+        searchTableFilter();
+    }
 
+    private void searchTableFilter() {
+        FilteredList<TransactionTm> filteredBooList = new FilteredList<>(obList, b -> true);
+        txtSearchTransaction.textProperty().addListener((observable,oldValue,newValue) -> {
+            filteredBooList.setPredicate(transactionTm -> {
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return true;
+                }
+                String search = newValue.toLowerCase();
+
+                if (transactionTm.getBorrowingID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getBorrowingID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getMemberID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getMemberID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getMemberName().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getMemberName().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getBook().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getBook().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getGenre().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getGenre().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getBorrowingDate().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getBorrowingDate().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getReturningDate().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getReturningDate().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getBookID().toLowerCase().contains(search)) {
+                    return true;
+                } else if (transactionTm.getBookID().toLowerCase().contains(search)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<TransactionTm> sortedList = new SortedList<>(filteredBooList);
+        sortedList.comparatorProperty().bind(tblTransaction.comparatorProperty());
+        tblTransaction.setItems(sortedList);
     }
 
     private void autoCompleteBooks() {
