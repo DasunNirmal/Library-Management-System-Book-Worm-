@@ -108,7 +108,7 @@ public class BooksDAOImpl implements BooksDAO {
         Transaction transaction = session.beginTransaction();
 
         Books entity = null;
-        Query<Books> query = session.createQuery("FROM Books WHERE bookID = :bookID", Books.class);
+        Query<Books> query = session.createQuery("FROM Books WHERE bookID = :bookID AND availability = 'Yes'", Books.class);
         query.setParameter("bookID",searchInput);
         List<Books> booksList = query.getResultList();
 
@@ -125,7 +125,7 @@ public class BooksDAOImpl implements BooksDAO {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query<String> query = session.createQuery("SELECT bookID FROM Books WHERE bookID LIKE :bookID", String.class);
+        Query<String> query = session.createQuery("SELECT bookID FROM Books WHERE bookID LIKE :bookID AND availability = 'Yes'", String.class);
         query.setParameter("bookID", "%" + id + "%");
 
         List<String> branches = query.list();
@@ -141,7 +141,7 @@ public class BooksDAOImpl implements BooksDAO {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query<String> query = session.createQuery("SELECT title FROM Books WHERE title LIKE :title", String.class);
+        Query<String> query = session.createQuery("SELECT title FROM Books WHERE title LIKE :title AND availability = 'Yes'", String.class);
         query.setParameter("title", "%" + name + "%");
 
         List<String> branches = query.list();
@@ -172,5 +172,17 @@ public class BooksDAOImpl implements BooksDAO {
         transaction.commit();
         session.close();
         return true;
+    }
+
+    @Override
+    public void checkAvailability() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("UPDATE Books SET availability = 'No' WHERE qty = '0' ");
+        query.executeUpdate();
+
+        transaction.commit();
+        session.close();
     }
 }

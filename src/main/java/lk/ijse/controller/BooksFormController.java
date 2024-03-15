@@ -97,6 +97,11 @@ public class BooksFormController {
         setCellValueFactory();
         tableListener();
         autoComplete();
+        checkForQuantity();
+    }
+
+    private void checkForQuantity() {
+        booksBO.check();
     }
 
     private void tableListener() {
@@ -125,6 +130,7 @@ public class BooksFormController {
             txtAuthor.setText(row.getAuthor());
             txtBookQty.setText(row.getQty());
             lblBranchName.setText(row.getBranchName());
+            lblBranchID.setText(row.getBranchID());
             if (row.getAvailability().startsWith("Yes") || row.getAvailability().startsWith("yes")) {
                 rbYes.setSelected(true);
                 rbNo.setSelected(false);
@@ -191,6 +197,7 @@ public class BooksFormController {
             if (isSaved) {
                 clearFields();
                 generateNextID();
+                checkForQuantity();
                 loadAllBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book is Added").show();
             }
@@ -216,6 +223,7 @@ public class BooksFormController {
             if (isDeleted) {
                 clearFields();
                 generateNextID();
+                checkForQuantity();
                 loadAllBooks();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book Deleted").show();
             }
@@ -247,6 +255,7 @@ public class BooksFormController {
             if (isUpdated) {
                 clearFields();
                 loadAllBooks();
+                checkForQuantity();
                 generateNextID();
                 new Alert(Alert.AlertType.CONFIRMATION,"Book Is Updated").show();
             }
@@ -342,6 +351,7 @@ public class BooksFormController {
     void btnClearOnAction(ActionEvent event) {
         clearFields();
         generateNextID();
+        checkForQuantity();
     }
 
     @FXML

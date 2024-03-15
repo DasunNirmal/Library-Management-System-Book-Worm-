@@ -13,4 +13,7 @@ public interface BooksDAO extends CrudDAO<Books> {
     boolean updateBookQty(String bookID);
 
     boolean updateQtyDeleted(String bookID);
+
+    void checkAvailability();
+
 }
