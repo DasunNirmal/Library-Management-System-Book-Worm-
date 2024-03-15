@@ -182,18 +182,35 @@ public class TransactionFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        String borrowingID = lblBorrowingID.getText();
+        String retuningDate = String.valueOf(dpReturningDate.getValue());
+        String bookID = lblBookID.getText();
+        books.setBookID(bookID);
 
+        try {
+            boolean isDeleted = transactionBO.deleteTransaction(borrowingID);
+            if (isDeleted) {
+                boolean isUpdated = booksBO.upDateQtyIfDeleted(bookID);
+                if (isUpdated) {
+                    generateNextID();
+                    loadAllTransactions();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Successful").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR,"Not Deleted").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void btnReturnOnAction(ActionEvent event) {
-
+        btnDeleteOnAction(new ActionEvent());
     }
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void txtSearchBooks(ActionEvent event) {

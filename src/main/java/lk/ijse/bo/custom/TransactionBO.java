@@ -14,8 +14,6 @@ public interface TransactionBO extends SuperBO {
 
     boolean deleteTransaction(String id) throws SQLException, ClassNotFoundException;
 
-    TransactionDto searchTransaction(String id) throws SQLException, ClassNotFoundException;
-
     List<TransactionDto> getAllTransaction() throws SQLException, ClassNotFoundException;
 
     String generateTransactionID();

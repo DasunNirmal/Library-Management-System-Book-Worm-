@@ -162,4 +162,15 @@ public class BooksDAOImpl implements BooksDAO {
         session.close();
         return true;
     }
+
+    @Override
+    public boolean updateQtyDeleted(String bookID) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.createNativeQuery("UPDATE Books SET qty = qty + 1  WHERE bookID = '"+bookID+"'", Books.class).executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }

@@ -2,7 +2,6 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.TransactionDAO;
-import lk.ijse.entity.Books;
 import lk.ijse.entity.Transactions;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -30,7 +29,13 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.createNativeQuery("DELETE FROM Transactions WHERE borrowingID ='"+id+"'", Transactions.class).executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

@@ -28,12 +28,7 @@ public class TransactionBOImpl implements TransactionBO {
 
     @Override
     public boolean deleteTransaction(String id) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public TransactionDto searchTransaction(String id) throws SQLException, ClassNotFoundException {
-        return null;
+        return transactionDAO.delete(id);
     }
 
     @Override

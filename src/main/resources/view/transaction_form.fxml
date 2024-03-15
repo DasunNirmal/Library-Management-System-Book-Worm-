@@ -117,15 +117,7 @@
             <TableColumn fx:id="colReturnDate" prefWidth="162.0" text="Return Date" />
         </columns>
       </TableView>
-      <JFXButton layoutX="536.0" layoutY="348.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton layoutX="621.0" layoutY="348.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Update" textFill="#f8c291">
+      <JFXButton layoutX="633.0" layoutY="348.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #273c73; -fx-background-radius: 25;" stylesheets="@../style/btn_hover.css" text="Save" textFill="#f8c291">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

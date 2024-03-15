@@ -92,4 +92,9 @@ public class BookBOImpl implements BooksBO {
     public boolean updateQty(String bookID) {
         return booksDAO.updateBookQty(bookID);
     }
+
+    @Override
+    public boolean upDateQtyIfDeleted(String bookID) {
+        return booksDAO.updateQtyDeleted(bookID);
+    }
 }

@@ -27,4 +27,6 @@ public interface BooksBO extends SuperBO {
     String[] searchBooksName(String name);
 
     boolean updateQty(String bookID);
+
+    boolean upDateQtyIfDeleted(String bookID);
 }
