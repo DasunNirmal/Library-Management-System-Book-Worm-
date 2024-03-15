@@ -13,6 +13,7 @@ import lk.ijse.bo.custom.TransactionBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dao.custom.MembersDAO;
+import lk.ijse.dao.custom.TransactionDAO;
 import lk.ijse.dto.TransactionDto;
 import lk.ijse.dto.tm.TransactionTm;
 
@@ -67,6 +68,8 @@ public class DashboardFormController {
 
     TransactionBO transactionBO = (TransactionBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.TRANSACTION);
 
+    TransactionDAO transactionDAO = (TransactionDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.TRANSACTION);
+
     MembersDAO membersDAO = (MembersDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.MEMBERS);
 
     BooksDAO booksDAO = (BooksDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOKS);
@@ -93,11 +96,13 @@ public class DashboardFormController {
     }
 
     private void overdueBooks() {
-
+        String overdue = transactionDAO.getTotalOverdueBooks();
+        lblOverdueBooks.setText(overdue);
     }
 
     private void borrowedBooks() {
-
+        String borrowed = transactionDAO.getTotalOverdueBooks();
+        lblBorrowedBooks.setText(borrowed);
     }
 
     private void loadAllBorrowedBooks() {

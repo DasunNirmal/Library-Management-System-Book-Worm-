@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TransactionDAO extends CrudDAO<Transactions> {
     List<Transactions> getAllOverDueBooks();
+
+    String getTotalOverdueBooks();
 }

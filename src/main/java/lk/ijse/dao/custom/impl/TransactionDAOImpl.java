@@ -93,4 +93,19 @@ public class TransactionDAOImpl implements TransactionDAO {
         session.close();
         return list;
     }
+
+    @Override
+    public String getTotalOverdueBooks() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Long> query = session.createQuery("SELECT count(*) FROM Transactions ", Long.class);
+        Long count = query.uniqueResult();
+        String overdueCount = String.valueOf(count);
+
+        transaction.commit();
+        session.close();
+
+        return overdueCount;
+    }
 }
