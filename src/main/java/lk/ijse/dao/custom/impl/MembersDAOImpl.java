@@ -2,6 +2,7 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.MembersDAO;
+import lk.ijse.entity.Branches;
 import lk.ijse.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -45,7 +46,20 @@ public class MembersDAOImpl implements MembersDAO {
 
     @Override
     public Member search(String id) throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Member entity = null;
+        Query<Member> query = session.createQuery("FROM Member WHERE phoneNumber = :phoneNumber", Member.class);
+        query.setParameter("phoneNumber",id);
+        List<Member> membersList = query.getResultList();
+
+        if (!membersList.isEmpty()) {
+            entity = membersList.get(0);
+        }
+        transaction.commit();
+        session.close();
+        return entity;
     }
 
     @Override
@@ -87,5 +101,21 @@ public class MembersDAOImpl implements MembersDAO {
         } else {
             return "M001";
         }
+    }
+
+    @Override
+    public String[] searchPhoneNumber(String phoneNumber) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<String> query = session.createQuery("SELECT phoneNumber FROM Member WHERE phoneNumber LIKE :phoneNumber", String.class);
+        query.setParameter("phoneNumber", "%" + phoneNumber + "%");
+
+        List<String> branches = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return branches.toArray(new String[0]);
     }
 }

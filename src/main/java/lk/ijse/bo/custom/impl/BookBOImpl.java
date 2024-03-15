@@ -4,7 +4,9 @@ import lk.ijse.bo.custom.BooksBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dto.BooksDto;
+import lk.ijse.dto.BranchesDto;
 import lk.ijse.entity.Books;
+import lk.ijse.entity.Branches;
 import lk.ijse.entity.Transaction;
 
 import java.sql.SQLException;
@@ -37,8 +39,15 @@ public class BookBOImpl implements BooksBO {
     }
 
     @Override
-    public BooksDto searchBooks(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public BooksDto searchBooks(String name) throws SQLException, ClassNotFoundException {
+        Books dto = booksDAO.search(name);
+        if (dto != null) {
+            return new BooksDto(dto.getBookID(),
+                    dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(),
+                    dto.getAvailability(), dto.getQty());
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -57,5 +66,27 @@ public class BookBOImpl implements BooksBO {
     @Override
     public String generateBookID() {
         return booksDAO.generateNextID();
+    }
+
+    @Override
+    public BooksDto searchBooksByID(String searchInput) throws SQLException, ClassNotFoundException {
+        Books dto = booksDAO.searchByID(searchInput);
+        if (dto != null) {
+            return new BooksDto(dto.getBookID(),
+                    dto.getTitle(), dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(),
+                    dto.getAvailability(), dto.getQty());
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public String[] searchBooksID(String id) {
+        return booksDAO.getBookByID(id);
+    }
+
+    @Override
+    public String[] searchBooksName(String name) {
+        return booksDAO.getBookByName(name);
     }
 }

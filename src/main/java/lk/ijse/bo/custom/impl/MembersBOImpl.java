@@ -30,8 +30,13 @@ public class MembersBOImpl implements MembersBO {
     }
 
     @Override
-    public MemberDto searchMember(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public MemberDto searchMember(String phoneNumber) throws SQLException, ClassNotFoundException {
+        Member member = membersDAO.search(phoneNumber);
+        if (member != null) {
+            return new MemberDto(member.getId(), member.getName(), member.getPhoneNumber(), member.getEmail(), member.getAddress());
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -47,5 +52,10 @@ public class MembersBOImpl implements MembersBO {
             members.add(new MemberDto(member.getId(),member.getName(),member.getPhoneNumber(),member.getEmail(),member.getAddress()));
         }
         return members;
+    }
+
+    @Override
+    public String[] searchMemberPhoneNumber(String phoneNumber) {
+        return membersDAO.searchPhoneNumber(phoneNumber);
     }
 }

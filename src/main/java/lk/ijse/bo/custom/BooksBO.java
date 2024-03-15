@@ -14,9 +14,15 @@ public interface BooksBO extends SuperBO {
 
     boolean deleteBooks(String id) throws SQLException, ClassNotFoundException;
 
-    BooksDto searchBooks(String id) throws SQLException, ClassNotFoundException;
+    BooksDto searchBooks(String name) throws SQLException, ClassNotFoundException;
 
     List<BooksDto> getAllBooks() throws SQLException, ClassNotFoundException;
 
     String generateBookID();
+
+    BooksDto searchBooksByID(String searchInput) throws SQLException, ClassNotFoundException;
+
+    String[] searchBooksID(String id);
+
+    String[] searchBooksName(String name);
 }

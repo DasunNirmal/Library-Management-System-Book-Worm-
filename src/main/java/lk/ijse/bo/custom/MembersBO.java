@@ -20,4 +20,6 @@ public interface MembersBO extends SuperBO {
     String generateNextMemberID();
 
     List<MemberDto> getAllMembers() throws SQLException, ClassNotFoundException;
+
+    String[] searchMemberPhoneNumber(String phoneNumber);
 }

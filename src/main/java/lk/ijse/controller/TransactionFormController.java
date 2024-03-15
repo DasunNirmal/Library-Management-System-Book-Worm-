@@ -2,13 +2,18 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.BooksBO;
+import lk.ijse.bo.custom.MembersBO;
 import lk.ijse.bo.custom.TransactionBO;
+import lk.ijse.dto.BooksDto;
+import lk.ijse.dto.MemberDto;
+import org.controlsfx.control.textfield.TextFields;
+
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class TransactionFormController {
 
@@ -65,8 +70,27 @@ public class TransactionFormController {
 
     TransactionBO transactionBO = (TransactionBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.TRANSACTION);
 
+    MembersBO membersBO = (MembersBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.MEMBERS);
+
+    BooksBO booksBO = (BooksBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.BOOKS);
+
     public void initialize() {
+        lblDate.setText(String.valueOf(LocalDate.now()));
         generateNextID();
+        autoCompleteMembers();
+        autoCompleteBooks();
+    }
+
+    private void autoCompleteBooks() {
+        String[] id = booksBO.searchBooksID(txtSearchBooks.getText());
+        TextFields.bindAutoCompletion(txtSearchBooks, id);
+        String[] name = booksBO.searchBooksName(txtSearchBooks.getText());
+        TextFields.bindAutoCompletion(txtSearchBooks, name);
+    }
+
+    private void autoCompleteMembers() {
+        String[] id = membersBO.searchMemberPhoneNumber(txtSearchMembers.getText());
+        TextFields.bindAutoCompletion(txtSearchMembers, id);
     }
 
     private void generateNextID() {
@@ -95,18 +119,51 @@ public class TransactionFormController {
     }
 
     @FXML
-    void btnUpDateOnAction(ActionEvent event) {
+    void btnUpdateOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void txtGoToDatePicker(ActionEvent event) {
-
+    void txtSearchBooks(ActionEvent event) {
+        String searchInput = txtSearchBooks.getText();
+        try {
+            BooksDto books;
+            if (searchInput.matches("[B][0-9]{3,}")) {
+                books = booksBO.searchBooksByID(searchInput);
+            } else {
+                books = booksBO.searchBooks(searchInput);
+            }
+            if (books != null) {
+                lblBookID.setText(books.getBookID());
+                lblBookName.setText(books.getTitle());
+                lblGenre.setText(books.getGenre());
+            } else {
+                new Alert(Alert.AlertType.ERROR,"Book Not Found").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    void txtGoToSearchBooks(ActionEvent event) {
-
+    void txtSearchMembers(ActionEvent event) {
+        String phoneNumber = txtSearchMembers.getText();
+        try {
+            MemberDto memberDto;
+            memberDto = membersBO.searchMember(phoneNumber);
+            if (memberDto != null) {
+                lblMemberID.setText(memberDto.getId());
+                lblMemberName.setText(memberDto.getName());
+            } else {
+                new Alert(Alert.AlertType.ERROR,"Member Not Found").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

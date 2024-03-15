@@ -5,4 +5,5 @@ import lk.ijse.entity.Member;
 
 public interface MembersDAO extends CrudDAO<Member> {
 
+    String[] searchPhoneNumber(String phoneNumber);
 }
