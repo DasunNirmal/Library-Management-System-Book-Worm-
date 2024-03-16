@@ -2,6 +2,7 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.UserDAO;
+import lk.ijse.entity.Branches;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -24,7 +25,13 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean update(User dto) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(dto);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -34,7 +41,20 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User search(String id) throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        User entity = null;
+        Query<User> query = session.createQuery("FROM User WHERE email = :email", User.class);
+        query.setParameter("email",id);
+        List<User> userList = query.getResultList();
+
+        if (!userList.isEmpty()) {
+            entity = userList.get(0);
+        }
+        transaction.commit();
+        session.close();
+        return entity;
     }
 
     @Override

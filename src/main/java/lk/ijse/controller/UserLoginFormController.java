@@ -107,6 +107,17 @@ public class UserLoginFormController {
     }
 
     @FXML
+    void hypForgotPasswordOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/forgotPassword_form.fxml"));
+        Scene scene = new Scene(anchorPane);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.setTitle("Change Password");
+    }
+
+    @FXML
     void txtBtnLoginOnAction(ActionEvent event) {
         btnLoginOnAction(new ActionEvent());
     }

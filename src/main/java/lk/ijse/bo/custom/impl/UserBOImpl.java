@@ -17,4 +17,18 @@ public class UserBOImpl implements UserBO {
         return userDAO.save(new User(dto.getEmail(), dto.getPassword(), dto.getUserName()));
     }
 
+    @Override
+    public UserDto searchUser(String email) throws SQLException, ClassNotFoundException {
+        User user = userDAO.search(email);
+        if (user != null) {
+            return new UserDto(user.getEmail(), user.getPassword(), user.getUserName());
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean updateUser(UserDto userDto) throws SQLException, ClassNotFoundException {
+        return userDAO.update(new User(userDto.getEmail(), userDto.getPassword(), userDto.getUserName()));
+    }
 }

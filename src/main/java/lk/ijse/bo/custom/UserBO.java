@@ -8,4 +8,8 @@ import java.sql.SQLException;
 public interface UserBO extends SuperBO {
 
     boolean saveUser(UserDto dto) throws SQLException;
+
+    UserDto searchUser(String email) throws SQLException, ClassNotFoundException;
+
+    boolean updateUser(UserDto userDto) throws SQLException, ClassNotFoundException;
 }

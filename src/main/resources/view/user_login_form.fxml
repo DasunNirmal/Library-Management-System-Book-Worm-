@@ -100,7 +100,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </CheckBox>
-      <Hyperlink layoutX="383.0" layoutY="298.0" text="Forgot Password ?" textFill="WHITE">
+      <Hyperlink layoutX="383.0" layoutY="298.0" onAction="#hypForgotPasswordOnAction" text="Forgot Password ?" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>

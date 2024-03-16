@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.RegExPatterns.RegExPatterns;
+import javafx.util.Duration;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBO;
 import lk.ijse.dto.UserDto;
@@ -20,7 +21,7 @@ import lk.ijse.dto.UserDto;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RegistrationFormController {
+public class ForgotPasswordFormController {
 
     @FXML
     private CheckBox checkBox;
@@ -29,10 +30,10 @@ public class RegistrationFormController {
     private ImageView imgLock;
 
     @FXML
-    private AnchorPane node;
+    private TextField txtEmail;
 
     @FXML
-    private TextField txtEmail;
+    private AnchorPane node;
 
     @FXML
     private PasswordField txtPasswordField;
@@ -45,6 +46,27 @@ public class RegistrationFormController {
 
     UserBO userBO = (UserBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.USER);
 
+    public void initialize() {
+        txtUserName.setDisable(true);
+    }
+
+    @FXML
+    void btnChangeOnAction(ActionEvent event) {
+        String email = txtEmail.getText();
+        String name = txtUserName.getText();
+        String pw = txtPasswordField.getText();
+
+        try {
+            boolean isUpdated = userBO.updateUser(new UserDto(email,pw,name));
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION,"Your Password Updated").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     void changeVisibilityOnAction(ActionEvent event) {
@@ -61,13 +83,6 @@ public class RegistrationFormController {
         imgLock.setVisible(true);
     }
 
-    private void clearFields() {
-        txtUserName.setText("");
-        txtEmail.setText("");
-        txtPasswordField.setText("");
-        txtPasswordTextField.setText("");
-    }
-
     @FXML
     void imgBackONAction(MouseEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/user_login_form.fxml"));
@@ -79,50 +94,26 @@ public class RegistrationFormController {
         stage.setTitle("Login");
     }
 
-
-    @FXML
-    void btnRegisterOnAction(ActionEvent event) {
-        String name = txtUserName.getText();
-        String email = txtEmail.getText();
-        String password = txtPasswordField.getText();
-
-        boolean isUserValid = RegExPatterns.getValidName().matcher(name).matches();
-        boolean isEmailValid = RegExPatterns.getValidEmail().matcher(email).matches();
-        boolean isPasswordValid = RegExPatterns.getValidPassword().matcher(password).matches();
-
-        if (!isUserValid){
-            new Alert(Alert.AlertType.ERROR,"Can Not Leave Name Empty").showAndWait();
-            return;
-        }if (!isEmailValid){
-            new Alert(Alert.AlertType.ERROR,"Can Not Leave Email Empty").showAndWait();
-            return;
-        }if (!isPasswordValid){
-            new Alert(Alert.AlertType.ERROR,"Can Not Leave Password Empty").showAndWait();
-        } else {
-            try {
-                boolean isSaved = userBO.saveUser(new UserDto(email,password,name));
-                if (isSaved) {
-                    clearFields();
-                    new Alert(Alert.AlertType.CONFIRMATION,"Saved").show();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-            }
-        }
-    }
-
     @FXML
     void txtGoToBtnRegistrationOnAction(ActionEvent event) {
-        btnRegisterOnAction(new ActionEvent());
+
     }
 
     @FXML
-    void txtGoToEmailOnAction(ActionEvent event) {
-        txtEmail.requestFocus();
-    }
-
-    @FXML
-    void txtGoToPasswordOnAction(ActionEvent event) {
-        txtPasswordField.requestFocus();
+    void txtSearchUser(ActionEvent event) {
+        String email = txtEmail.getText();
+        try {
+            UserDto userDto;
+            userDto = userBO.searchUser(email);
+            if (userDto != null) {
+                txtUserName.setText(userDto.getUserName());
+            } else {
+                new Alert(Alert.AlertType.ERROR,"Sorry No Such an Account Found Try again").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
