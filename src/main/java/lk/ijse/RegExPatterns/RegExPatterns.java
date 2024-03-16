@@ -8,6 +8,9 @@ public class RegExPatterns {
     @Getter
     public static final Pattern validName = Pattern.compile("\\b[A-Z][a-z]*( [A-Z][a-z]*)*\\b");
     @Getter
+    private static final Pattern validEmail = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
+    @Getter
     public static final Pattern validDescription = Pattern.compile("\\b[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*\\b");
     @Getter
     public static final Pattern validPassword = Pattern.compile("(.*?[0-9]){4,}");

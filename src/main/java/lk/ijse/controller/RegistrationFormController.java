@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.RegExPatterns.RegExPatterns;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBO;
 import lk.ijse.dto.UserDto;
@@ -60,6 +61,13 @@ public class RegistrationFormController {
         imgLock.setVisible(true);
     }
 
+    private void clearFields() {
+        txtUserName.setText("");
+        txtEmail.setText("");
+        txtPasswordField.setText("");
+        txtPasswordTextField.setText("");
+    }
+
     @FXML
     void imgBackONAction(MouseEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/user_login_form.fxml"));
@@ -78,13 +86,28 @@ public class RegistrationFormController {
         String email = txtEmail.getText();
         String password = txtPasswordField.getText();
 
-        try {
-            boolean isSaved = userBO.saveUser(new UserDto(name,email,password));
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION,"Saved").show();
+        boolean isUserValid = RegExPatterns.getValidName().matcher(name).matches();
+        boolean isEmailValid = RegExPatterns.getValidEmail().matcher(email).matches();
+        boolean isPasswordValid = RegExPatterns.getValidPassword().matcher(password).matches();
+
+        if (!isUserValid){
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Name Empty").showAndWait();
+            return;
+        }if (!isEmailValid){
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Email Empty").showAndWait();
+            return;
+        }if (!isPasswordValid){
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Password Empty").showAndWait();
+        } else {
+            try {
+                boolean isSaved = userBO.saveUser(new UserDto(name,email,password));
+                if (isSaved) {
+                    clearFields();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Saved").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 

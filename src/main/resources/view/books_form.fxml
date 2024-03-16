@@ -67,7 +67,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSearchBranch" alignment="CENTER" layoutX="574.0" layoutY="185.0" onAction="#txtSearchBranchOnAction" prefHeight="27.0" prefWidth="165.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtSearchBranch" alignment="CENTER" layoutX="574.0" layoutY="185.0" onAction="#txtSearchBranchOnAction" prefHeight="27.0" prefWidth="165.0" promptText="R001" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -190,9 +190,9 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotalBooks" layoutX="839.0" layoutY="196.0" prefHeight="38.0" prefWidth="107.0" textFill="#273c73">
+      <Label fx:id="lblTotalBooks" alignment="CENTER" layoutX="839.0" layoutY="196.0" prefHeight="38.0" prefWidth="107.0" textFill="#273c73">
          <font>
-            <Font name="Dyuthi Regular" size="17.0" />
+            <Font name="Dyuthi Regular" size="23.0" />
          </font>
       </Label>
    </children>

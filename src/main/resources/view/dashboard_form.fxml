@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="714.0" prefWidth="1029.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardFormController">
+<AnchorPane fx:id="rootNode" prefHeight="714.0" prefWidth="1029.0" style="-fx-background-color: #273C7314;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardFormController">
    <children>
       <AnchorPane layoutX="37.0" layoutY="116.0" prefHeight="103.0" prefWidth="257.0" style="-fx-background-color: #5F97A64D; -fx-background-radius: 15;">
          <children>
@@ -84,7 +84,7 @@
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="235.0" layoutY="340.0" text="see all" textFill="#fc9d44">
+      <Hyperlink layoutX="235.0" layoutY="340.0" onAction="#hypGoToTransaction" text="see all" textFill="#ff7d04">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>

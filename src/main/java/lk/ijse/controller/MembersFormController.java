@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.RegExPatterns.RegExPatterns;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.MembersBO;
 import lk.ijse.dao.DAOFactory;
@@ -145,19 +146,36 @@ public class MembersFormController {
         String email = txtEmail.getText();
         String address = txtAddress.getText();
 
-        try {
-            boolean isSaved = membersBO.saveMember(new MemberDto(id,name,phoneNumber,email,address));
-            if (isSaved) {
-                clearFields();
-                LoadAllMembers();
-                generateNextID();
-                totalMembers();
-                new Alert(Alert.AlertType.INFORMATION,"Member Saved").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
+        boolean isValidName = RegExPatterns.getValidName().matcher(name).matches();
+        boolean isValidPhoneNumber = RegExPatterns.getValidPhoneNumber().matcher(phoneNumber).matches();
+        boolean isValidEmail = RegExPatterns.getValidEmail().matcher(email).matches();
+        boolean isValidAddress = RegExPatterns.getValidAddress().matcher(address).matches();
 
+        if (!isValidName) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Name").showAndWait();
+            return;
+        } if (!isValidPhoneNumber) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Phone Number").showAndWait();
+            return;
+        } if (!isValidEmail) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Email").showAndWait();
+            return;
+        } if (!isValidAddress) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Address").showAndWait();
+        } else {
+            try {
+                boolean isSaved = membersBO.saveMember(new MemberDto(id,name,phoneNumber,email,address));
+                if (isSaved) {
+                    clearFields();
+                    LoadAllMembers();
+                    generateNextID();
+                    totalMembers();
+                    new Alert(Alert.AlertType.INFORMATION,"Member Saved").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
+        }
     }
 
     @FXML
@@ -168,19 +186,37 @@ public class MembersFormController {
         String email = txtEmail.getText();
         String address = txtAddress.getText();
 
-        try {
-            boolean isUpdated = membersBO.updateMember(new MemberDto(id,name,phoneNumber,email,address));
-            if (isUpdated) {
-                LoadAllMembers();
-                clearFields();
-                generateNextID();
-                totalMembers();
-                new Alert(Alert.AlertType.INFORMATION,"Member Updated").show();
+        boolean isValidName = RegExPatterns.getValidName().matcher(name).matches();
+        boolean isValidPhoneNumber = RegExPatterns.getValidPhoneNumber().matcher(phoneNumber).matches();
+        boolean isValidEmail = RegExPatterns.getValidEmail().matcher(email).matches();
+        boolean isValidAddress = RegExPatterns.getValidAddress().matcher(address).matches();
+
+        if (!isValidName) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Name").showAndWait();
+            return;
+        } if (!isValidPhoneNumber) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Phone Number").showAndWait();
+            return;
+        } if (!isValidEmail) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Email").showAndWait();
+            return;
+        } if (!isValidAddress) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Address").showAndWait();
+        } else {
+            try {
+                boolean isUpdated = membersBO.updateMember(new MemberDto(id,name,phoneNumber,email,address));
+                if (isUpdated) {
+                    LoadAllMembers();
+                    clearFields();
+                    generateNextID();
+                    totalMembers();
+                    new Alert(Alert.AlertType.INFORMATION,"Member Updated").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -192,19 +228,37 @@ public class MembersFormController {
         String email = txtEmail.getText();
         String address = txtAddress.getText();
 
-        try {
-            boolean isDeleted = membersBO.deleteMember(id);
-            if (isDeleted) {
-                LoadAllMembers();
-                clearFields();
-                generateNextID();
-                totalMembers();
-                new Alert(Alert.AlertType.INFORMATION,"Member Deleted").show();
+        boolean isValidName = RegExPatterns.getValidName().matcher(name).matches();
+        boolean isValidPhoneNumber = RegExPatterns.getValidPhoneNumber().matcher(phoneNumber).matches();
+        boolean isValidEmail = RegExPatterns.getValidEmail().matcher(email).matches();
+        boolean isValidAddress = RegExPatterns.getValidAddress().matcher(address).matches();
+
+        if (!isValidName) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Name").showAndWait();
+            return;
+        } if (!isValidPhoneNumber) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Phone Number").showAndWait();
+            return;
+        } if (!isValidEmail) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Email").showAndWait();
+            return;
+        } if (!isValidAddress) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Address").showAndWait();
+        } else {
+            try {
+                boolean isDeleted = membersBO.deleteMember(id);
+                if (isDeleted) {
+                    LoadAllMembers();
+                    clearFields();
+                    generateNextID();
+                    totalMembers();
+                    new Alert(Alert.AlertType.INFORMATION,"Member Deleted").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 

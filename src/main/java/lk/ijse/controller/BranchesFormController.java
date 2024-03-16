@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.RegExPatterns.RegExPatterns;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dao.DAOFactory;
@@ -143,16 +144,34 @@ public class BranchesFormController {
         String manager = txtManager.getText();
         String address = txtAddress.getText();
 
-        try {
-            boolean isSaved = branchBO.saveBranch(new BranchesDto(id,branchName,staff,manager,address));
-            if (isSaved) {
-                clearFields();
-                generateNextID();
-                totalBranches();
-                new Alert(Alert.AlertType.INFORMATION,"Branch Added Successfully").show();
+        boolean isValidName = RegExPatterns.getValidName().matcher(branchName).matches();
+        boolean isValidQTY = RegExPatterns.getValidInt().matcher(staff).matches();
+        boolean isValidManager = RegExPatterns.getValidName().matcher(manager).matches();
+        boolean isValidAddress = RegExPatterns.getValidAddress().matcher(address).matches();
+
+        if (!isValidName){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Branch Name").showAndWait();
+            return;
+        } if (!isValidQTY){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Staff").showAndWait();
+            return;
+        } if (!isValidManager){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Manager Name").showAndWait();
+            return;
+        } if (!isValidAddress){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Address").showAndWait();
+        } else {
+            try {
+                boolean isSaved = branchBO.saveBranch(new BranchesDto(id,branchName,staff,manager,address));
+                if (isSaved) {
+                    clearFields();
+                    generateNextID();
+                    totalBranches();
+                    new Alert(Alert.AlertType.INFORMATION,"Branch Added Successfully").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -164,19 +183,37 @@ public class BranchesFormController {
         String manager = txtManager.getText();
         String address = txtAddress.getText();
 
-        try {
-            boolean isDeleted = branchBO.deleteBranch(id);
-            if (isDeleted) {
-                loadAllBranches();
-                clearFields();
-                generateNextID();
-                totalBranches();
-                new Alert(Alert.AlertType.INFORMATION,"Branch is Deleted").show();
+        boolean isValidName = RegExPatterns.getValidName().matcher(branchName).matches();
+        boolean isValidQTY = RegExPatterns.getValidInt().matcher(staff).matches();
+        boolean isValidManager = RegExPatterns.getValidName().matcher(manager).matches();
+        boolean isValidAddress = RegExPatterns.getValidAddress().matcher(address).matches();
+
+        if (!isValidName){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Branch Name").showAndWait();
+            return;
+        } if (!isValidQTY){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Staff").showAndWait();
+            return;
+        } if (!isValidManager){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Manager Name").showAndWait();
+            return;
+        } if (!isValidAddress){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Address").showAndWait();
+        } else {
+            try {
+                boolean isDeleted = branchBO.deleteBranch(id);
+                if (isDeleted) {
+                    loadAllBranches();
+                    clearFields();
+                    generateNextID();
+                    totalBranches();
+                    new Alert(Alert.AlertType.INFORMATION,"Branch is Deleted").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -188,19 +225,37 @@ public class BranchesFormController {
         String manager = txtManager.getText();
         String address = txtAddress.getText();
 
-        try {
-            boolean isUpdate = branchBO.updateBranch(new BranchesDto(id,branchName,staff,manager,address));
-            if (isUpdate) {
-                loadAllBranches();
-                clearFields();
-                generateNextID();
-                totalBranches();
-                new Alert(Alert.AlertType.INFORMATION,"Branches Updated").show();
+        boolean isValidName = RegExPatterns.getValidName().matcher(branchName).matches();
+        boolean isValidQTY = RegExPatterns.getValidInt().matcher(staff).matches();
+        boolean isValidManager = RegExPatterns.getValidName().matcher(manager).matches();
+        boolean isValidAddress = RegExPatterns.getValidAddress().matcher(address).matches();
+
+        if (!isValidName){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Branch Name").showAndWait();
+            return;
+        } if (!isValidQTY){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Staff").showAndWait();
+            return;
+        } if (!isValidManager){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Manager Name").showAndWait();
+            return;
+        } if (!isValidAddress){
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Address").showAndWait();
+        } else {
+            try {
+                boolean isUpdate = branchBO.updateBranch(new BranchesDto(id,branchName,staff,manager,address));
+                if (isUpdate) {
+                    loadAllBranches();
+                    clearFields();
+                    generateNextID();
+                    totalBranches();
+                    new Alert(Alert.AlertType.INFORMATION,"Branches Updated").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 

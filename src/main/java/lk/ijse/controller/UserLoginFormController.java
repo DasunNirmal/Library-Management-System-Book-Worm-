@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.RegExPatterns.RegExPatterns;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBO;
 import lk.ijse.dao.custom.UserDAO;
@@ -72,15 +73,25 @@ public class UserLoginFormController {
         String name = txtUserName.getText();
         String password = txtPasswordField.getText();
 
-        try {
-            boolean isValid = userDAO.isValidUser(name,password);
-            if (isValid) {
-                goToMainForm();
-            } else {
-                new Alert(Alert.AlertType.ERROR,"Something went wrong").show();
+        boolean isUserValid = RegExPatterns.getValidName().matcher(name).matches();
+        boolean isPasswordValid = RegExPatterns.getValidPassword().matcher(password).matches();
+
+        if (!isUserValid){
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Name Empty").showAndWait();
+            return;
+        }if (!isPasswordValid){
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Password Empty").showAndWait();
+        } else {
+            try {
+                boolean isValid = userDAO.isValidUser(name,password);
+                if (isValid) {
+                    goToMainForm();
+                } else {
+                    new Alert(Alert.AlertType.ERROR,"Something went wrong").show();
+                }
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 

@@ -2,12 +2,15 @@ package lk.ijse.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.TransactionBO;
 import lk.ijse.dao.DAOFactory;
@@ -19,6 +22,7 @@ import lk.ijse.dto.TransactionDto;
 import lk.ijse.dto.tm.OverdueTm;
 import lk.ijse.dto.tm.TransactionTm;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -65,6 +69,9 @@ public class DashboardFormController {
 
     @FXML
     private TableView<OverdueTm> tblOverdueList;
+
+    @FXML
+    private AnchorPane rootNode;
 
     private ObservableList<TransactionTm> obList = FXCollections.observableArrayList();
 
@@ -151,5 +158,12 @@ public class DashboardFormController {
                     dto.getBDate(), dto.getReturningDate(), dto.getBookID()));
         }
         tblOverdueList.setItems(obList);
+    }
+
+    @FXML
+    public void hypGoToTransaction(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/transaction_form.fxml"));
+        this.rootNode.getChildren().clear();
+        this.rootNode.getChildren().add(anchorPane);
     }
 }

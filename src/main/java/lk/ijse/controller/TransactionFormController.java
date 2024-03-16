@@ -158,27 +158,58 @@ public class TransactionFormController {
         String bookID = lblBookID.getText();
         books.setBookID(bookID);
 
-        try {
-            boolean isSaved = transactionBO.saveTransaction(
-                    new TransactionDto(borrowingID,memberID,memberName,bookName,genre,bDate,retuningDate,books));
-            if (isSaved) {
-                boolean isUpdated = booksBO.updateQty(bookID);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.CONFIRMATION,"Successful").show();
-                    loadAllTransactions();
-                    generateNextID();
+        if (!retuningDate.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Returning Date").showAndWait();
+            return;
+        } if (!memberID.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Member ID Empty must Search before continuing").showAndWait();
+            return;
+        } if (!memberName.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Member Name Empty must Search before continuing").showAndWait();
+            return;
+        } if (!bookName.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Book Name Empty must Search before continuing").showAndWait();
+            return;
+        } if (!genre.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Genre Empty must Search before continuing").showAndWait();
+            return;
+        } if (!bookID.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Book ID Empty must Search before continuing").showAndWait();
+        } else {
+            try {
+                boolean isSaved = transactionBO.saveTransaction(
+                        new TransactionDto(borrowingID,memberID,memberName,bookName,genre,bDate,retuningDate,books));
+                if (isSaved) {
+                    boolean isUpdated = booksBO.updateQty(bookID);
+                    if (isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION,"Successful").show();
+                        clearFields();
+                        loadAllTransactions();
+                        generateNextID();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR,"Not Saved").show();
                 }
-            } else {
-                new Alert(Alert.AlertType.ERROR,"Not Saved").show();
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
+        clearFields();
+        generateNextID();
+    }
 
+    private void clearFields() {
+        lblBorrowingID.setText("");
+        lblMemberID.setText("");
+        lblMemberName.setText("");
+        lblBookName.setText("");
+        lblGenre.setText("");
+        dpReturningDate.setValue(null);
+        lblBookID.setText("");
     }
 
     @FXML
@@ -188,11 +219,16 @@ public class TransactionFormController {
         String bookID = lblBookID.getText();
         books.setBookID(bookID);
 
+        if (!retuningDate.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Returning Date").showAndWait();
+            return;
+        }
         try {
             boolean isDeleted = transactionBO.deleteTransaction(borrowingID);
             if (isDeleted) {
                 boolean isUpdated = booksBO.upDateQtyIfDeleted(bookID);
                 if (isUpdated) {
+                    clearFields();
                     generateNextID();
                     loadAllTransactions();
                     new Alert(Alert.AlertType.CONFIRMATION,"Successful").show();
@@ -227,6 +263,7 @@ public class TransactionFormController {
                 lblBookID.setText(books.getBookID());
                 lblBookName.setText(books.getTitle());
                 lblGenre.setText(books.getGenre());
+                txtSearchBooks.setText("");
             } else {
                 new Alert(Alert.AlertType.ERROR,"Book Not Found").show();
             }
@@ -244,6 +281,7 @@ public class TransactionFormController {
             MemberDto memberDto;
             memberDto = membersBO.searchMember(phoneNumber);
             if (memberDto != null) {
+                txtSearchMembers.setText("");
                 lblMemberID.setText(memberDto.getId());
                 lblMemberName.setText(memberDto.getName());
             } else {

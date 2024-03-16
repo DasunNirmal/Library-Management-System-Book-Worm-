@@ -168,7 +168,7 @@ public class BooksDAOImpl implements BooksDAO {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.createNativeQuery("UPDATE Books SET qty = qty + 1  WHERE bookID = '"+bookID+"'", Books.class).executeUpdate();
+        session.createNativeQuery("UPDATE Books SET qty = qty + 1, availability = 'Yes' WHERE qty = qty > '0' AND bookID = '"+bookID+"'", Books.class).executeUpdate();
         transaction.commit();
         session.close();
         return true;

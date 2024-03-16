@@ -69,7 +69,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtStaff" alignment="CENTER" layoutX="724.0" layoutY="119.0" onAction="#txtGoToManagerOnAction" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
+      <TextField fx:id="txtStaff" alignment="CENTER" layoutX="724.0" layoutY="119.0" onAction="#txtGoToManagerOnAction" prefHeight="36.0" prefWidth="189.0" promptText="10" style="-fx-background-color: #FAD39054; -fx-background-radius: 20; -fx-border-color: #273c73; -fx-border-radius: 20;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -132,9 +132,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label fx:id="lblTotal" layoutX="777.0" layoutY="239.0" prefHeight="38.0" prefWidth="133.0" textFill="#273c73">
+      <Label fx:id="lblTotal" alignment="CENTER" layoutX="777.0" layoutY="239.0" prefHeight="38.0" prefWidth="133.0" textFill="#273c73">
          <font>
-            <Font name="Dyuthi Regular" size="17.0" />
+            <Font name="Dyuthi Regular" size="23.0" />
          </font>
       </Label>
    </children>

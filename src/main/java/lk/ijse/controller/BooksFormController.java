@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.RegExPatterns.RegExPatterns;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BooksBO;
 import lk.ijse.bo.custom.BranchBO;
@@ -99,12 +100,12 @@ public class BooksFormController {
     BooksBO booksBO = (BooksBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.BOOKS);
 
     public void initialize() {
+        checkForQuantity();
         generateNextID();
         loadAllBooks();
         setCellValueFactory();
         tableListener();
         autoComplete();
-        checkForQuantity();
         totalBooks();
     }
 
@@ -204,21 +205,41 @@ public class BooksFormController {
         } else if (rbNo.isSelected()) {
              available = rbNo.getText();
         }
-
-        try {
-            boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
-            if (isSaved) {
-                clearFields();
-                generateNextID();
-                checkForQuantity();
-                loadAllBooks();
-                totalBooks();
-                new Alert(Alert.AlertType.CONFIRMATION,"Book is Added").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        if (!rbYes.isSelected() && !rbNo.isSelected()) {
+            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
         }
 
+        boolean isValidTitle = RegExPatterns.getValidName().matcher(title).matches();
+        boolean isValidGenre = RegExPatterns.getValidName().matcher(genre).matches();
+        boolean isValidAuthor = RegExPatterns.getValidName().matcher(author).matches();
+        boolean isValidQty = RegExPatterns.getValidInt().matcher(qty).matches();
+
+        if (!isValidTitle) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Tittle").showAndWait();
+            return;
+        } if (!isValidGenre) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Genre").showAndWait();
+            return;
+        } if (!isValidAuthor) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Author Name").showAndWait();
+            return;
+        } if (!isValidQty) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();
+        } else {
+            try {
+                boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
+                if (isSaved) {
+                    clearFields();
+                    generateNextID();
+                    checkForQuantity();
+                    loadAllBooks();
+                    totalBooks();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Book is Added").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
+        }
     }
 
     @FXML
@@ -228,24 +249,42 @@ public class BooksFormController {
         String genre = txtGenre.getText();
         String author = txtAuthor.getText();
         String qty = txtBookQty.getText();
-        String branchName = lblBranchName.getText();
         if (!rbYes.isSelected() && !rbNo.isSelected()) {
             new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
         }
-        try {
-            boolean isDeleted = booksBO.deleteBooks(id);
-            if (isDeleted) {
-                clearFields();
-                generateNextID();
-                checkForQuantity();
-                loadAllBooks();
-                totalBooks();
-                new Alert(Alert.AlertType.CONFIRMATION,"Book Deleted").show();
+
+        boolean isValidTitle = RegExPatterns.getValidName().matcher(title).matches();
+        boolean isValidGenre = RegExPatterns.getValidName().matcher(genre).matches();
+        boolean isValidAuthor = RegExPatterns.getValidName().matcher(author).matches();
+        boolean isValidQty = RegExPatterns.getValidInt().matcher(qty).matches();
+
+        if (!isValidTitle) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Tittle").showAndWait();
+            return;
+        } if (!isValidGenre) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Genre").showAndWait();
+            return;
+        } if (!isValidAuthor) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Author Name").showAndWait();
+            return;
+        } if (!isValidQty) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();
+        } else {
+            try {
+                boolean isDeleted = booksBO.deleteBooks(id);
+                if (isDeleted) {
+                    clearFields();
+                    generateNextID();
+                    checkForQuantity();
+                    loadAllBooks();
+                    totalBooks();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Book Deleted").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -265,20 +304,42 @@ public class BooksFormController {
             available = rbNo.getText();
         }
 
-        try {
-            boolean isUpdated = booksBO.updateBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
-            if (isUpdated) {
-                clearFields();
-                loadAllBooks();
-                checkForQuantity();
-                generateNextID();
-                totalBooks();
-                new Alert(Alert.AlertType.CONFIRMATION,"Book Is Updated").show();
+        if (!rbYes.isSelected() && !rbNo.isSelected()) {
+            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
+        }
+
+        boolean isValidTitle = RegExPatterns.getValidName().matcher(title).matches();
+        boolean isValidGenre = RegExPatterns.getValidName().matcher(genre).matches();
+        boolean isValidAuthor = RegExPatterns.getValidName().matcher(author).matches();
+        boolean isValidQty = RegExPatterns.getValidInt().matcher(qty).matches();
+
+        if (!isValidTitle) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Tittle").showAndWait();
+            return;
+        } if (!isValidGenre) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Genre").showAndWait();
+            return;
+        } if (!isValidAuthor) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Author Name").showAndWait();
+            return;
+        } if (!isValidQty) {
+            new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();
+        } else {
+            try {
+                boolean isUpdated = booksBO.updateBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
+                if (isUpdated) {
+                    clearFields();
+                    loadAllBooks();
+                    checkForQuantity();
+                    generateNextID();
+                    totalBooks();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Book Is Updated").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
