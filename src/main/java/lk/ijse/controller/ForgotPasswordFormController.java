@@ -93,8 +93,8 @@ public class ForgotPasswordFormController {
     }
 
     @FXML
-    void txtGoToBtnRegistrationOnAction(ActionEvent event) {
-
+    void txtGoToBtnChangeOnAction(ActionEvent event) {
+        btnChangeOnAction(new ActionEvent());
     }
 
     @FXML
