@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.BOFactory;
@@ -158,12 +155,5 @@ public class DashboardFormController {
                     dto.getBDate(), dto.getReturningDate(), dto.getBookID()));
         }
         tblOverdueList.setItems(obList);
-    }
-
-    @FXML
-    public void hypGoToTransaction(ActionEvent actionEvent) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/transaction_form.fxml"));
-        this.rootNode.getChildren().clear();
-        this.rootNode.getChildren().add(anchorPane);
     }
 }
