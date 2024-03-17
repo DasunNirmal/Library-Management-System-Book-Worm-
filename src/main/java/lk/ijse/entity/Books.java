@@ -20,7 +20,6 @@ public class Books {
     @ManyToOne
     @JoinColumn(name = "branchID")
     private Branches branches;
-    /*private String branchID;*/
     private String branchName;
     private String availability;
     private String qty;
