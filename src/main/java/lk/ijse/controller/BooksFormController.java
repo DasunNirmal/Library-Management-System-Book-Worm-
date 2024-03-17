@@ -18,6 +18,7 @@ import lk.ijse.dao.custom.BooksDAO;
 import lk.ijse.dto.BooksDto;
 import lk.ijse.dto.BranchesDto;
 import lk.ijse.dto.tm.BooksTm;
+import lk.ijse.entity.Branches;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.sql.SQLException;
@@ -99,6 +100,8 @@ public class BooksFormController {
 
     BooksBO booksBO = (BooksBO) BOFactory.getBoFactory().grtBo(BOFactory.BOTypes.BOOKS);
 
+    Branches branches = new Branches();
+
     public void initialize() {
         checkForQuantity();
         generateNextID();
@@ -175,7 +178,7 @@ public class BooksFormController {
                 obList.add(new BooksTm(
                         dto.getBookID(),
                         dto.getTitle(),
-                        dto.getGenre(), dto.getAuthor(), dto.getBranchID(), dto.getBranchName(), dto.getAvailability(), dto.getQty()));
+                        dto.getGenre(), dto.getAuthor(), dto.getBranchID().getId(), dto.getBranchName(), dto.getAvailability(), dto.getQty()));
             }
             tblBooks.setItems(obList);
         } catch (SQLException e) {
@@ -197,6 +200,8 @@ public class BooksFormController {
         String genre = txtGenre.getText();
         String author = txtAuthor.getText();
         String branchID = lblBranchID.getText();
+        branches.setId(branchID);
+
         String qty = txtBookQty.getText();
         String branchName = lblBranchName.getText();
         String available = null;
@@ -227,7 +232,7 @@ public class BooksFormController {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();
         } else {
             try {
-                boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
+                boolean isSaved = booksBO.saveBooks(new BooksDto(id,title,genre,author,branches,branchName,available,qty));
                 if (isSaved) {
                     clearFields();
                     generateNextID();
@@ -295,6 +300,7 @@ public class BooksFormController {
         String genre = txtGenre.getText();
         String author = txtAuthor.getText();
         String branchID = lblBranchID.getText();
+        branches.setId(branchID);
         String qty = txtBookQty.getText();
         String branchName = lblBranchName.getText();
         String available = null;
@@ -326,7 +332,7 @@ public class BooksFormController {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();
         } else {
             try {
-                boolean isUpdated = booksBO.updateBooks(new BooksDto(id,title,genre,author,branchID,branchName,available,qty));
+                boolean isUpdated = booksBO.updateBooks(new BooksDto(id,title,genre,author,branches,branchName,available,qty));
                 if (isUpdated) {
                     clearFields();
                     loadAllBooks();

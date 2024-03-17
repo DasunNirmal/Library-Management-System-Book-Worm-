@@ -17,7 +17,10 @@ public class Books {
     private String title;
     private String genre;
     private String author;
-    private String branchID;
+    @ManyToOne
+    @JoinColumn(name = "branchID")
+    private Branches branches;
+    /*private String branchID;*/
     private String branchName;
     private String availability;
     private String qty;

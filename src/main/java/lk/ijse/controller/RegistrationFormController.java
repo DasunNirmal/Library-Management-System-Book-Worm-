@@ -97,7 +97,7 @@ public class RegistrationFormController {
             new Alert(Alert.AlertType.ERROR,"Can Not Leave Email Empty").showAndWait();
             return;
         }if (!isPasswordValid){
-            new Alert(Alert.AlertType.ERROR,"Can Not Leave Password Empty").showAndWait();
+            new Alert(Alert.AlertType.ERROR,"Can Not Leave Password Empty and Must Contain Minimum of 4 characters").showAndWait();
         } else {
             try {
                 boolean isSaved = userBO.saveUser(new UserDto(email,password,name));

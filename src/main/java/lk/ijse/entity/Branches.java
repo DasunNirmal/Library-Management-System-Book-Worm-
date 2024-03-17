@@ -20,4 +20,7 @@ public class Branches {
     private String staff;
     private String manager;
     private String address;
+
+    @OneToMany(mappedBy = "branches")
+    private List<Books> books;
 }

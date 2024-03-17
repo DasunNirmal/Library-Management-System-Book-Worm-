@@ -4,6 +4,7 @@ import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BranchDAO;
 import lk.ijse.dto.BranchesDto;
+import lk.ijse.entity.Books;
 import lk.ijse.entity.Branches;
 
 import java.sql.SQLException;
@@ -16,13 +17,14 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean saveBranch(BranchesDto dto) throws SQLException {
-        return branchDAO.save(new Branches(dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),dto.getAddress()));
+        return branchDAO.save(new Branches(dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),
+                dto.getAddress(),new ArrayList<Books>()));
     }
 
     @Override
     public boolean updateBranch(BranchesDto dto) throws SQLException, ClassNotFoundException {
         return branchDAO.update(new Branches(
-                dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),dto.getAddress()));
+                dto.getId(),dto.getBranchName(),dto.getStaff(),dto.getManager(),dto.getAddress(),new ArrayList<Books>()));
     }
 
     @Override
