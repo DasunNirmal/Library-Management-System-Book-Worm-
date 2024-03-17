@@ -158,22 +158,22 @@ public class TransactionFormController {
         String bookID = lblBookID.getText();
         books.setBookID(bookID);
 
-        if (!retuningDate.isEmpty()) {
+        if (retuningDate.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Returning Date").showAndWait();
             return;
-        } if (!memberID.isEmpty()) {
+        } if (memberID.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Can Not Leave Member ID Empty must Search before continuing").showAndWait();
             return;
-        } if (!memberName.isEmpty()) {
+        } if (memberName.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Can Not Leave Member Name Empty must Search before continuing").showAndWait();
             return;
-        } if (!bookName.isEmpty()) {
+        } if (bookName.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Can Not Leave Book Name Empty must Search before continuing").showAndWait();
             return;
-        } if (!genre.isEmpty()) {
+        } if (genre.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Can Not Leave Genre Empty must Search before continuing").showAndWait();
             return;
-        } if (!bookID.isEmpty()) {
+        } if (bookID.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Can Not Leave Book ID Empty must Search before continuing").showAndWait();
         } else {
             try {
@@ -219,7 +219,7 @@ public class TransactionFormController {
         String bookID = lblBookID.getText();
         books.setBookID(bookID);
 
-        if (!retuningDate.isEmpty()) {
+        if (retuningDate.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Returning Date").showAndWait();
             return;
         }

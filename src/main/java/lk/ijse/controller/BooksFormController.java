@@ -210,9 +210,6 @@ public class BooksFormController {
         } else if (rbNo.isSelected()) {
              available = rbNo.getText();
         }
-        if (!rbYes.isSelected() && !rbNo.isSelected()) {
-            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
-        }
 
         boolean isValidTitle = RegExPatterns.getValidName().matcher(title).matches();
         boolean isValidGenre = RegExPatterns.getValidName().matcher(genre).matches();
@@ -227,6 +224,9 @@ public class BooksFormController {
             return;
         } if (!isValidAuthor) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Author Name").showAndWait();
+            return;
+        } if (!rbYes.isSelected() && !rbNo.isSelected()) {
+            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
             return;
         } if (!isValidQty) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();
@@ -254,9 +254,6 @@ public class BooksFormController {
         String genre = txtGenre.getText();
         String author = txtAuthor.getText();
         String qty = txtBookQty.getText();
-        if (!rbYes.isSelected() && !rbNo.isSelected()) {
-            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
-        }
 
         boolean isValidTitle = RegExPatterns.getValidName().matcher(title).matches();
         boolean isValidGenre = RegExPatterns.getValidName().matcher(genre).matches();
@@ -271,6 +268,9 @@ public class BooksFormController {
             return;
         } if (!isValidAuthor) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Author Name").showAndWait();
+            return;
+        } if (!rbYes.isSelected() && !rbNo.isSelected()) {
+            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
             return;
         } if (!isValidQty) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();
@@ -310,10 +310,6 @@ public class BooksFormController {
             available = rbNo.getText();
         }
 
-        if (!rbYes.isSelected() && !rbNo.isSelected()) {
-            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
-        }
-
         boolean isValidTitle = RegExPatterns.getValidName().matcher(title).matches();
         boolean isValidGenre = RegExPatterns.getValidName().matcher(genre).matches();
         boolean isValidAuthor = RegExPatterns.getValidName().matcher(author).matches();
@@ -327,6 +323,9 @@ public class BooksFormController {
             return;
         } if (!isValidAuthor) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Author Name").showAndWait();
+            return;
+        } if (!rbYes.isSelected() && !rbNo.isSelected()) {
+            new Alert(Alert.AlertType.ERROR,"Cannot Leave Unselected ! (Yes || No)").show();
             return;
         } if (!isValidQty) {
             new Alert(Alert.AlertType.ERROR,"Wrong Input or Empty for Book Book Count").showAndWait();

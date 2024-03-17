@@ -46,6 +46,13 @@ public class ForgotPasswordFormController {
 
     public void initialize() {
         txtUserName.setDisable(true);
+        clearFields();
+    }
+
+    private void clearFields() {
+        txtEmail.setText("");
+        txtUserName.setText("");
+        txtPasswordField.setText("");
     }
 
     @FXML
@@ -57,6 +64,7 @@ public class ForgotPasswordFormController {
         try {
             boolean isUpdated = userBO.updateUser(new UserDto(email,pw,name));
             if (isUpdated) {
+                clearFields();
                 new Alert(Alert.AlertType.CONFIRMATION,"Your Password Updated").show();
             }
         } catch (SQLException e) {
