@@ -110,8 +110,8 @@ public class BranchesFormController {
         colBranchID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colBranchName.setCellValueFactory(new PropertyValueFactory<>("branchName"));
         colBranchManager.setCellValueFactory(new PropertyValueFactory<>("manager"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("staff"));
-        colStaff.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colStaff.setCellValueFactory(new PropertyValueFactory<>("staff"));
         tblBranches.setId("my-table");
     }
 
