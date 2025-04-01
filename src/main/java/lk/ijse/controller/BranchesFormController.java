@@ -167,6 +167,7 @@ public class BranchesFormController {
                     clearFields();
                     generateNextID();
                     totalBranches();
+                    loadAllBranches();
                     new Alert(Alert.AlertType.INFORMATION,"Branch Added Successfully").show();
                 }
             } catch (SQLException e) {
